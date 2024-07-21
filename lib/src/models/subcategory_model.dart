@@ -12,6 +12,7 @@ class SubcategoryModel {
     this.subcategory = Subcategory.notebook,
     this.properties = const [],
     this.variants = const [],
+    this.catalog = const [],
   });
 
   factory SubcategoryModel.fromMap(Map<String, dynamic> map) => SubcategoryModel(
@@ -30,6 +31,7 @@ class SubcategoryModel {
               (x) => VariantModel.fromMap(x as Map<String, dynamic>),
             )
             .toList(),
+        catalog: (map['catalog'] as List? ?? []).cast<String>(),
       );
 
   factory SubcategoryModel.fromJson(
@@ -44,6 +46,7 @@ class SubcategoryModel {
   final Subcategory subcategory;
   final List<PropertiesModel> properties;
   final List<VariantModel> variants;
+  final List<String> catalog;
 
   SubcategoryModel copyWith({
     String? id,
@@ -53,6 +56,7 @@ class SubcategoryModel {
     Subcategory? subcategory,
     List<PropertiesModel>? properties,
     List<VariantModel>? variants,
+    List<String>? catalog,
   }) =>
       SubcategoryModel(
         id: id ?? this.id,
@@ -62,6 +66,7 @@ class SubcategoryModel {
         subcategory: subcategory ?? this.subcategory,
         properties: properties ?? this.properties,
         variants: variants ?? this.variants,
+        catalog: catalog ?? this.catalog,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -72,13 +77,14 @@ class SubcategoryModel {
         'subcategory': subcategory.name,
         'properties': properties.map((x) => x.toMap()).toList(),
         'variants': variants.map((x) => x.toMap()).toList(),
+        'catalog': catalog,
       };
 
   String toJson() => json.encode(toMap());
 
   @override
   String toString() =>
-      'SubcategoryModel(id: $id, categoryId: $categoryId, name: $name, sku: $sku, subcategory: $subcategory, properties: $properties, variants: $variants)';
+      'SubcategoryModel(id: $id, categoryId: $categoryId, name: $name, sku: $sku, subcategory: $subcategory, properties: $properties, variants: $variants, catalog: $catalog)';
 
   @override
   bool operator ==(covariant SubcategoryModel other) {
@@ -90,10 +96,18 @@ class SubcategoryModel {
         other.sku == sku &&
         other.subcategory == subcategory &&
         listEquals(other.properties, properties) &&
-        listEquals(other.variants, variants);
+        listEquals(other.variants, variants) &&
+        listEquals(other.catalog, catalog);
   }
 
   @override
   int get hashCode =>
-      id.hashCode ^ categoryId.hashCode ^ name.hashCode ^ sku.hashCode ^ subcategory.hashCode ^ properties.hashCode ^ variants.hashCode;
+      id.hashCode ^
+      categoryId.hashCode ^
+      name.hashCode ^
+      sku.hashCode ^
+      subcategory.hashCode ^
+      properties.hashCode ^
+      variants.hashCode ^
+      catalog.hashCode;
 }
