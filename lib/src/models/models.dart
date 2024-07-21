@@ -2,6 +2,7 @@ export 'bundle_model.dart';
 export 'category_model.dart';
 export 'combination_model.dart';
 export 'customization_model.dart';
+export 'dialog_model.dart';
 export 'dimension_model.dart';
 export 'options_model.dart';
 export 'properties_model.dart';
