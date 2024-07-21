@@ -97,10 +97,10 @@ enum NavItem {
 }
 
 enum LayoutType {
-  mobile(AppConstants.maxMobileWidth),
-  tablet(AppConstants.maxTabletWidth),
-  desktop(AppConstants.maxDesktopWidth),
-  desktopLarge(AppConstants.maxLargeDesktopWidth);
+  mobile(PrintEasyConstants.maxMobileWidth),
+  tablet(PrintEasyConstants.maxTabletWidth),
+  desktop(PrintEasyConstants.maxDesktopWidth),
+  desktopLarge(PrintEasyConstants.maxLargeDesktopWidth);
 
   factory LayoutType.fromWidth(double width) {
     if (width <= LayoutType.mobile.maxWidth) {

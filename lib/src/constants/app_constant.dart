@@ -1,5 +1,5 @@
-class AppConstants {
-  const AppConstants._();
+class PrintEasyConstants {
+  const PrintEasyConstants._();
 
   static const String appName = 'printeasy_utils';
 

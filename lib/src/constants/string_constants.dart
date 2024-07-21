@@ -1,5 +1,5 @@
-class StringConstants {
-  const StringConstants._();
+class PrintEasyStrings {
+  const PrintEasyStrings._();
 
   static const String rupee = '₹';
 }
