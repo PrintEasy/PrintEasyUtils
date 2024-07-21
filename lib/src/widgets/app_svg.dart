@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:printeasy_utils/printeasy_utils.dart';
 
 class AppSvg extends StatelessWidget {
   const AppSvg(
@@ -28,5 +29,6 @@ class AppSvg extends StatelessWidget {
               ),
         height: height ?? dimension,
         width: width ?? dimension,
+        package: PrintEasyConstants.appName,
       );
 }

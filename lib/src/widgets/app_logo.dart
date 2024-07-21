@@ -23,6 +23,7 @@ class AppLogo extends StatelessWidget {
           fit: fit ?? BoxFit.cover,
           height: height ?? 40,
           width: width,
+          package: PrintEasyConstants.appName,
         ),
       );
 }
