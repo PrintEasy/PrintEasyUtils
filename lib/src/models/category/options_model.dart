@@ -2,13 +2,13 @@ import 'dart:convert';
 
 class OptionsModel {
   const OptionsModel({
-    this.title = '',
+    this.title,
     this.label,
     this.value = '',
   });
 
   factory OptionsModel.fromMap(Map<String, dynamic> map) => OptionsModel(
-        title: map['title'] as String? ?? map['value'] as String,
+        title: map['title'] as String?,
         label: map['label'] as String?,
         value: map['value'] as String,
       );
@@ -18,9 +18,13 @@ class OptionsModel {
   ) =>
       OptionsModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  final String title;
+  final String? title;
   final String? label;
   final String value;
+
+  bool get hasTitle => title != null && title!.trim().isNotEmpty;
+
+  bool get hasLabel => label != null && label!.trim().isNotEmpty;
 
   OptionsModel copyWith({
     String? title,
