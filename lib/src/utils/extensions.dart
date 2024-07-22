@@ -42,6 +42,8 @@ extension OrderStatusExtension on OrderStatus {
         return 'Order has been confirmed';
       case OrderStatus.preparing:
         return 'Order is being processed';
+      case OrderStatus.ready:
+        return 'Order is ready, waiting for delivery partner';
       case OrderStatus.shipped:
         return 'Order has been shipped';
       case OrderStatus.outForDelivery:

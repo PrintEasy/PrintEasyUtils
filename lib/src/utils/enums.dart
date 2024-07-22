@@ -59,6 +59,7 @@ enum OrderStatus {
   paymentPending('Payment Pending', Colors.orange),
   confirmed('Confirmed', Colors.green),
   preparing('Preparing', Colors.blue),
+  ready('Ready', Colors.blue),
   shipped('Shipped', Colors.blue),
   outForDelivery('Out for Delivery', Colors.blue),
   delivered('Delivered', Colors.green),
@@ -71,6 +72,7 @@ enum OrderStatus {
         OrderStatus.paymentPending.name.toLowerCase(): OrderStatus.paymentPending,
         OrderStatus.confirmed.name.toLowerCase(): OrderStatus.confirmed,
         OrderStatus.preparing.name.toLowerCase(): OrderStatus.preparing,
+        OrderStatus.ready.name.toLowerCase(): OrderStatus.ready,
         OrderStatus.shipped.name.toLowerCase(): OrderStatus.shipped,
         OrderStatus.outForDelivery.name.toLowerCase(): OrderStatus.outForDelivery,
         OrderStatus.delivered.name.toLowerCase(): OrderStatus.delivered,
@@ -83,6 +85,14 @@ enum OrderStatus {
   const OrderStatus(this.label, this.color);
   final String label;
   final Color color;
+
+  static List<OrderStatus> get visibleValues => [
+        OrderStatus.cancelled,
+        OrderStatus.confirmed,
+        OrderStatus.preparing,
+        OrderStatus.ready,
+        OrderStatus.shipped,
+      ];
 
   bool get isPaymentPending => this == OrderStatus.paymentPending;
 }
