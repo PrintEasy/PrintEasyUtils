@@ -8,6 +8,7 @@ class SubcategoryModel {
     this.id = '',
     this.categoryId = '',
     this.name = '',
+    this.subtitle,
     this.sku = '',
     this.subcategory = Subcategory.notebook,
     this.properties = const [],
@@ -19,6 +20,7 @@ class SubcategoryModel {
         id: map['id'] as String? ?? '',
         categoryId: map['categoryId'] as String? ?? '',
         name: map['name'] as String? ?? '',
+        subtitle: map['subtitle'] as String?,
         sku: map['sku'] as String? ?? '',
         subcategory: Subcategory.fromName(map['subcategory'] as String? ?? ''),
         properties: (map['properties'] as List? ?? [])
@@ -42,6 +44,7 @@ class SubcategoryModel {
   final String id;
   final String categoryId;
   final String name;
+  final String? subtitle;
   final String sku;
   final Subcategory subcategory;
   final List<PropertiesModel> properties;
@@ -52,6 +55,7 @@ class SubcategoryModel {
     String? id,
     String? categoryId,
     String? name,
+    String? subtitle,
     String? sku,
     Subcategory? subcategory,
     List<PropertiesModel>? properties,
@@ -62,6 +66,7 @@ class SubcategoryModel {
         id: id ?? this.id,
         categoryId: categoryId ?? this.categoryId,
         name: name ?? this.name,
+        subtitle: subtitle ?? this.subtitle,
         sku: sku ?? this.sku,
         subcategory: subcategory ?? this.subcategory,
         properties: properties ?? this.properties,
@@ -73,6 +78,7 @@ class SubcategoryModel {
         'id': id,
         'categoryId': categoryId,
         'name': name,
+        'subtitle': subtitle,
         'sku': sku,
         'subcategory': subcategory.name,
         'properties': properties.map((x) => x.toMap()).toList(),
@@ -84,7 +90,7 @@ class SubcategoryModel {
 
   @override
   String toString() =>
-      'SubcategoryModel(id: $id, categoryId: $categoryId, name: $name, sku: $sku, subcategory: $subcategory, properties: $properties, variants: $variants, catalog: $catalog)';
+      'SubcategoryModel(id: $id, categoryId: $categoryId, name: $name, subtitle: $subtitle, sku: $sku, subcategory: $subcategory, properties: $properties, variants: $variants, catalog: $catalog)';
 
   @override
   bool operator ==(covariant SubcategoryModel other) {
@@ -93,6 +99,7 @@ class SubcategoryModel {
     return other.id == id &&
         other.categoryId == categoryId &&
         other.name == name &&
+        other.subtitle == subtitle &&
         other.sku == sku &&
         other.subcategory == subcategory &&
         listEquals(other.properties, properties) &&
@@ -105,6 +112,7 @@ class SubcategoryModel {
       id.hashCode ^
       categoryId.hashCode ^
       name.hashCode ^
+      subtitle.hashCode ^
       sku.hashCode ^
       subcategory.hashCode ^
       properties.hashCode ^
