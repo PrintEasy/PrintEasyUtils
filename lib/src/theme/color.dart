@@ -15,9 +15,12 @@ class AppColors {
   static final Color white = const Color(0xFFFFFFFF).o;
   static final Color black = const Color(0xFF000000).o;
 
-  static final Color grey = const Color(0xFFE0DADA).o;
-  static final Color lightGrey = const Color(0xFFF9F9F9).o;
-  static final Color darkGrey = const Color(0xFF717171).o;
+  static final MaterialColor grey = MaterialColor(0xFFE0DADA.oi, {
+    300: const Color(0xFFF9F9F9).o,
+    500: const Color(0xFFE0DADA).o,
+    700: const Color(0xFF8B8686).o,
+    900: const Color(0xFF717171).o,
+  });
 
   static final Color error = const Color(0xFFF44336).o;
 }

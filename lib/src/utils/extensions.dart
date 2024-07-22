@@ -25,6 +25,8 @@ extension HilariousExtension on Object {
     }
     return 1;
   }
+
+  int get oi => o.toInt();
 }
 
 extension ColorExtension on Color {
