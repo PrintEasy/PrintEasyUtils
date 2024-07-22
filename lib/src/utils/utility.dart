@@ -67,16 +67,22 @@ class Utility {
     return image;
   }
 
-  static Future<Uint8List?> pickImageBytes([
+  static Future<Uint8List?> pickImageBytes({
     ImageSource? source,
-  ]) async {
+    int minSizeInKb = 900,
+  }) async {
     var image = await pickImage(
       source: source,
     );
     if (image == null) {
       return null;
     }
-    return await image.readAsBytes();
+    final imageBytes = await image.readAsBytes();
+    if (imageBytes.length < minSizeInKb * 1024) {
+      await Utility.showInfoDialog(DialogModel.error('Only images above ${minSizeInKb}Kb are accepted for better printing quality on the cover'));
+      return null;
+    }
+    return imageBytes;
   }
 
   static Future<void> showInfoDialog(DialogModel dialog) async {

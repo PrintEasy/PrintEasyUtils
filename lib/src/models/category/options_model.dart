@@ -22,6 +22,8 @@ class OptionsModel {
   final String? label;
   final String value;
 
+  String get text => title ?? label ?? '';
+
   bool get hasTitle => title != null && title!.trim().isNotEmpty;
 
   bool get hasLabel => label != null && label!.trim().isNotEmpty;
