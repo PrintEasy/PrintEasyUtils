@@ -146,6 +146,16 @@ extension OrderStatusExtension on OrderStatus {
         return label;
     }
   }
+
+  OrderStatus get nextStatus => switch (this) {
+        OrderStatus.paymentPending => OrderStatus.confirmed,
+        OrderStatus.confirmed => OrderStatus.preparing,
+        OrderStatus.preparing => OrderStatus.ready,
+        OrderStatus.ready => OrderStatus.shipped,
+        OrderStatus.shipped => OrderStatus.outForDelivery,
+        OrderStatus.outForDelivery => OrderStatus.delivered,
+        _ => this,
+      };
 }
 
 extension DateTimeExtension on DateTime {
