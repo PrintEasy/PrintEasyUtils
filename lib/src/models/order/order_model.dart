@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
 
 class OrderModel {
@@ -131,36 +130,9 @@ class OrderModel {
   bool operator ==(covariant OrderModel other) {
     if (identical(this, other)) return true;
 
-    return other.orderId == orderId &&
-        other.shipmentId == shipmentId &&
-        other.razorpay == razorpay &&
-        other.userRef == userRef &&
-        other.user == user &&
-        other.phone == phone &&
-        other.totalAmount == totalAmount &&
-        other.orderDate == orderDate &&
-        other.status == status &&
-        listEquals(other.items, items) &&
-        other.shippingAddressRef == shippingAddressRef &&
-        other.billingAddressRef == billingAddressRef &&
-        other.shippingAddress == shippingAddress &&
-        other.billingAddress == billingAddress;
+    return other.orderId == orderId;
   }
 
   @override
-  int get hashCode =>
-      orderId.hashCode ^
-      shipmentId.hashCode ^
-      razorpay.hashCode ^
-      userRef.hashCode ^
-      user.hashCode ^
-      phone.hashCode ^
-      totalAmount.hashCode ^
-      orderDate.hashCode ^
-      status.hashCode ^
-      items.hashCode ^
-      shippingAddressRef.hashCode ^
-      billingAddressRef.hashCode ^
-      shippingAddress.hashCode ^
-      billingAddress.hashCode;
+  int get hashCode => orderId.hashCode;
 }

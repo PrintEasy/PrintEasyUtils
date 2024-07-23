@@ -52,6 +52,7 @@ class AppButton extends StatelessWidget {
                 color: borderColor ?? backgroundColor ?? AppColors.accent,
               ),
             ),
+            elevation: 0,
           ),
           onPressed: onTap,
           child: Row(

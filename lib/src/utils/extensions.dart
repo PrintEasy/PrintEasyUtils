@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
 
@@ -15,6 +16,73 @@ extension BuildContextExtension on BuildContext {
         // LayoutType.mobile || LayoutType.tablet => 150,
         LayoutType.desktop || LayoutType.desktopLarge => 200,
       };
+
+  double get _scaleFactor => switch (type) {
+        LayoutType.mobile => 0.7,
+        LayoutType.tablet => 0.8,
+        LayoutType.desktop => 0.9,
+        LayoutType.desktopLarge => 1,
+      };
+
+  TextStyle? get displayLarge => textTheme.displayLarge?.copyWith(
+        fontSize: 57 * _scaleFactor,
+      );
+
+  TextStyle? get displayMedium => textTheme.displayMedium?.copyWith(
+        fontSize: 45 * _scaleFactor,
+      );
+
+  TextStyle? get displaySmall => textTheme.displaySmall?.copyWith(
+        fontSize: 36 * _scaleFactor,
+      );
+
+  TextStyle? get headlineLarge => textTheme.headlineLarge?.copyWith(
+        fontSize: 32 * _scaleFactor,
+      );
+
+  TextStyle? get headlineMedium => textTheme.headlineMedium?.copyWith(
+        fontSize: 28 * _scaleFactor,
+      );
+
+  TextStyle? get headlineSmall => textTheme.headlineSmall?.copyWith(
+        fontSize: 24 * _scaleFactor,
+      );
+
+  TextStyle? get titleLarge => textTheme.titleLarge?.copyWith(
+        fontSize: 22 * _scaleFactor,
+      );
+
+  TextStyle? get titleMedium => textTheme.titleMedium?.copyWith(
+        fontSize: 16 * _scaleFactor,
+      );
+
+  TextStyle? get titleSmall => textTheme.titleSmall?.copyWith(
+        fontSize: 14 * _scaleFactor,
+      );
+
+  TextStyle? get bodyLarge => textTheme.bodyLarge?.copyWith(
+        fontSize: 16 * _scaleFactor,
+      );
+
+  TextStyle? get bodyMedium => textTheme.bodyMedium?.copyWith(
+        fontSize: 14 * _scaleFactor,
+      );
+
+  TextStyle? get bodySmall => textTheme.bodySmall?.copyWith(
+        fontSize: 12 * _scaleFactor,
+      );
+
+  TextStyle? get labelLarge => textTheme.labelLarge?.copyWith(
+        fontSize: 14 * _scaleFactor,
+      );
+
+  TextStyle? get labelMedium => textTheme.labelMedium?.copyWith(
+        fontSize: 12 * _scaleFactor,
+      );
+
+  TextStyle? get labelSmall => textTheme.labelSmall?.copyWith(
+        fontSize: 11 * _scaleFactor,
+      );
 }
 
 extension HilariousExtension on Object {

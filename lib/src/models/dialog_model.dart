@@ -1,14 +1,22 @@
 import 'dart:convert';
 
 class DialogModel {
-  factory DialogModel.error(String error) => DialogModel(
-        title: 'Error',
+  factory DialogModel.error(
+    String error, [
+    String? title,
+  ]) =>
+      DialogModel(
+        title: title ?? 'Error',
         data: error,
         hasError: true,
       );
 
-  factory DialogModel.success(String message) => DialogModel(
-        title: 'Success',
+  factory DialogModel.success(
+    String message, [
+    String? title,
+  ]) =>
+      DialogModel(
+        title: title ?? 'Success',
         data: message,
         hasError: false,
       );
@@ -19,7 +27,10 @@ class DialogModel {
         hasError: map['hasError'] as bool,
       );
 
-  factory DialogModel.fromJson(String source) => DialogModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory DialogModel.fromJson(
+    String source,
+  ) =>
+      DialogModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   const DialogModel({
     this.title,

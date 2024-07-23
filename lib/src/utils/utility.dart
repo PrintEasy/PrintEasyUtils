@@ -1,6 +1,6 @@
-import 'dart:typed_data';
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -58,12 +58,22 @@ class Utility {
     if (showLoader) {
       Utility.showLoader();
     }
-    var image = ImagePicker().pickImage(
-      source: source ?? ImageSource.gallery,
-    );
-    if (showLoader) {
-      Utility.closeLoader();
+
+    XFile? image;
+    try {
+      image = await ImagePicker().pickImage(
+        source: source ?? ImageSource.gallery,
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error picking image: $e');
+      }
+    } finally {
+      if (showLoader) {
+        Utility.closeLoader();
+      }
     }
+
     return image;
   }
 
@@ -79,8 +89,10 @@ class Utility {
     }
     final imageBytes = await image.readAsBytes();
     if (imageBytes.length < minSizeInKb * 1024) {
-      await Utility.showInfoDialog(DialogModel.error('Only images above ${minSizeInKb}Kb are accepted for better printing quality on the cover'));
-      return null;
+      await Utility.showInfoDialog(DialogModel.error(
+        'The image you uploaded appears to be small. For the best print quality, please use a higher resolution image.',
+        'Alert',
+      ));
     }
     return imageBytes;
   }
