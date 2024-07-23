@@ -5,6 +5,10 @@ class PrintEasyConstants {
 
   static const String name = 'PrintEasyUtils';
 
+  static const double drawerWidth = 220;
+
+  static const double appBarLeadingWidth = 200;
+
   static const double maxMobileWidth = 480;
 
   static const double maxTabletWidth = 768;
