@@ -24,6 +24,11 @@ enum LayoutType {
   final double maxWidth;
 }
 
+enum IconPosition {
+  leading,
+  trailing;
+}
+
 enum TermType {
   terms(AssetConstants.termsCondition, 'terms_condition'),
   privacy(AssetConstants.privacyPolicy, 'privacy_policy'),

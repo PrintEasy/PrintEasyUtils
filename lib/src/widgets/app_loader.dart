@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:printeasy_utils/printeasy_utils.dart';
 
 class AppLoader extends StatelessWidget {
   const AppLoader({
@@ -30,7 +31,7 @@ class AppLoader extends StatelessWidget {
                   const SizedBox(width: 16),
                   Text(
                     message!,
-                    style: context.textTheme.labelLarge,
+                    style: context.labelLarge,
                   ),
                 ],
               ],
