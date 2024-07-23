@@ -18,9 +18,9 @@ extension BuildContextExtension on BuildContext {
       };
 
   double get _scaleFactor => switch (type) {
-        LayoutType.mobile => 0.7,
-        LayoutType.tablet => 0.8,
-        LayoutType.desktop => 0.9,
+        LayoutType.mobile => 0.8,
+        LayoutType.tablet => 0.9,
+        LayoutType.desktop => 1,
         LayoutType.desktopLarge => 1,
       };
 
