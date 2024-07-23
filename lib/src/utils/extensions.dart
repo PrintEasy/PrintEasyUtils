@@ -126,6 +126,26 @@ extension OrderStatusExtension on OrderStatus {
         return 'Order has been refunded';
     }
   }
+
+  String get actionLabel {
+    switch (this) {
+      case OrderStatus.paymentPending:
+        return 'Pay';
+      case OrderStatus.confirmed:
+        return 'Start Preparing';
+      case OrderStatus.preparing:
+        return 'Ready';
+      case OrderStatus.ready:
+        return 'Ship Order';
+      case OrderStatus.shipped:
+      case OrderStatus.outForDelivery:
+      case OrderStatus.delivered:
+      case OrderStatus.cancelled:
+      case OrderStatus.returned:
+      case OrderStatus.refunded:
+        return label;
+    }
+  }
 }
 
 extension DateTimeExtension on DateTime {
