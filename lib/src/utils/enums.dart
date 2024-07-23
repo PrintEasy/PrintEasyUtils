@@ -99,6 +99,12 @@ enum OrderStatus {
         OrderStatus.shipped,
       ];
 
+  static List<OrderStatus> get actionableValues => [
+        OrderStatus.confirmed,
+        OrderStatus.preparing,
+        OrderStatus.ready,
+      ];
+
   bool get isPaymentPending => this == OrderStatus.paymentPending;
 }
 
