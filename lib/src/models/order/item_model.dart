@@ -11,7 +11,6 @@ class ItemModel {
     required this.bundle,
     required this.price,
     required this.sku,
-    this.designImageUrl = '',
     this.customImageUrl = '',
   });
 
@@ -24,7 +23,6 @@ class ItemModel {
         pageCount: map['pageCount'] as int? ?? 0,
         bundle: map['bundle'] as int? ?? 0,
         sku: map['sku'] as String? ?? '',
-        designImageUrl: map['designImageUrl'] as String? ?? '',
         customImageUrl: map['customImageUrl'] as String? ?? '',
         price: map['price'] as double? ?? 0,
       );
@@ -37,7 +35,6 @@ class ItemModel {
   final int pageCount;
   final int bundle;
   final String sku;
-  final String designImageUrl;
   final String customImageUrl;
   final double price;
 
@@ -52,7 +49,6 @@ class ItemModel {
     int? pageCount,
     int? bundle,
     String? sku,
-    String? designImageUrl,
     String? customImageUrl,
     double? price,
   }) =>
@@ -63,7 +59,6 @@ class ItemModel {
         pageCount: pageCount ?? this.pageCount,
         bundle: bundle ?? this.bundle,
         sku: sku ?? this.sku,
-        designImageUrl: designImageUrl ?? this.designImageUrl,
         customImageUrl: customImageUrl ?? this.customImageUrl,
         price: price ?? this.price,
       );
@@ -75,7 +70,6 @@ class ItemModel {
         'pageCount': pageCount,
         'bundle': bundle,
         'sku': sku,
-        'designImageUrl': designImageUrl,
         'customImageUrl': customImageUrl,
         'price': price,
       };
@@ -84,7 +78,7 @@ class ItemModel {
 
   @override
   String toString() =>
-      'ItemModel(subcategory: $subcategory, size: $size, dimensions: $dimensions, pageCount: $pageCount, bundle: $bundle, sku: $sku, customImageUrl: $customImageUrl, designImageUrl: $designImageUrl, price: $price)';
+      'ItemModel(subcategory: $subcategory, size: $size, dimensions: $dimensions, pageCount: $pageCount, bundle: $bundle, sku: $sku, customImageUrl: $customImageUrl, price: $price)';
 
   @override
   bool operator ==(covariant ItemModel other) {
@@ -96,7 +90,6 @@ class ItemModel {
         other.pageCount == pageCount &&
         other.bundle == bundle &&
         other.sku == sku &&
-        other.designImageUrl == designImageUrl &&
         other.customImageUrl == customImageUrl &&
         other.price == price;
   }
@@ -109,7 +102,6 @@ class ItemModel {
       pageCount.hashCode ^
       bundle.hashCode ^
       sku.hashCode ^
-      designImageUrl.hashCode ^
       customImageUrl.hashCode ^
       price.hashCode;
 }

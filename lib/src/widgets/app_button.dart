@@ -10,6 +10,7 @@ class AppButton extends StatelessWidget {
     this.backgroundColor,
     this.foregroundColor,
     this.borderColor,
+    this.icon,
   })  : _isSmall = false,
         height = 48;
 
@@ -20,6 +21,7 @@ class AppButton extends StatelessWidget {
     this.foregroundColor,
     this.backgroundColor,
     this.borderColor,
+    this.icon,
   })  : _isSmall = true,
         height = 40;
 
@@ -28,6 +30,7 @@ class AppButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final Color? borderColor;
+  final IconData? icon;
 
   final bool _isSmall;
   final double height;
@@ -51,8 +54,19 @@ class AppButton extends StatelessWidget {
             ),
           ),
           onPressed: onTap,
-          child: Text(
-            label,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (icon != null) ...[
+                Icon(icon!),
+                SizedBox(width: _isSmall ? 8 : 16),
+              ],
+              Text(
+                label,
+              ),
+            ],
           ),
         ),
       );
