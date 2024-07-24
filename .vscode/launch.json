@@ -6,7 +6,11 @@
             "request": "launch",
             "cwd": "example",
             "program": "lib/main.dart",
-            // "flutterMode": "release"
+            // "flutterMode": "release",
+            "args": [
+                "--web-renderer",
+                "canvaskit",
+            ]
         }
     ]
 }

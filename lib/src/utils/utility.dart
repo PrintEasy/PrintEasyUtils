@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
+import 'package:screenshot/screenshot.dart';
 
 class Utility {
   const Utility._();
@@ -20,23 +21,30 @@ class Utility {
     });
   }
 
-  static Future<Uint8List?> captureWidget(GlobalKey key) async {
-    // try {
+  static Future<Uint8List?> captureWidget(
+    GlobalKey key, {
+    BuildContext? context,
+  }) async {
     var boundary = key.currentContext?.findRenderObject() as RenderRepaintBoundary?;
 
-    final image = await boundary?.toImage(pixelRatio: View.of(Get.context!).devicePixelRatio);
+    final image = await boundary?.toImage(pixelRatio: View.of((context ?? Get.context)!).devicePixelRatio);
     final byteData = await image?.toByteData(format: ImageByteFormat.png);
-    // final image = await boundary?.toImage();
-    // final byteData = await image?.toByteData(format: ImageByteFormat.png);
+
     image?.dispose();
 
     final pngBytes = byteData?.buffer.asUint8List();
 
     return pngBytes;
-    // } catch (e) {
-    //   return null;
-    // }
   }
+
+  static Future<Uint8List?> captureFromWidget(
+    Widget child, {
+    BuildContext? context,
+  }) =>
+      ScreenshotController().captureFromWidget(
+        child,
+        context: context,
+      );
 
   /// Show loader
   static void showLoader([String? message]) {
