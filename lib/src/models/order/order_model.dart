@@ -10,7 +10,6 @@ class OrderModel {
     this.razorpay,
     required this.userRef,
     this.user,
-    this.phone,
     required this.totalAmount,
     this.orderDate,
     this.status = OrderStatus.paymentPending,
@@ -30,7 +29,6 @@ class OrderModel {
           toFirestore: (data, _) => data.toMap(),
         ),
         user: map['user'] != null ? UserModel.fromMap(map['user'] as Map<String, dynamic>) : null,
-        phone: map['phone'] != null ? map['phone'] as String : null,
         totalAmount: map['totalAmount'] as double,
         orderDate: map['orderDate'] != null ? (map['orderDate'] as Timestamp).toDate() : null,
         status: OrderStatus.fromName(map['status'] as String? ?? ''),
@@ -58,7 +56,6 @@ class OrderModel {
   final RazorpayPaymentModel? razorpay;
   final DocumentReference<UserModel> userRef;
   final UserModel? user;
-  final String? phone;
   final double totalAmount;
   final DateTime? orderDate;
   final OrderStatus status;
@@ -68,7 +65,7 @@ class OrderModel {
   final DocumentReference<AddressModel> billingAddressRef;
   final AddressModel? billingAddress;
 
-  String get mobile => phone ?? user?.phone ?? '';
+  String get mobile => user?.phone ?? '';
 
   OrderModel copyWith({
     String? orderId,
@@ -76,7 +73,6 @@ class OrderModel {
     RazorpayPaymentModel? razorpay,
     DocumentReference<UserModel>? userRef,
     UserModel? user,
-    String? phone,
     double? totalAmount,
     DateTime? orderDate,
     OrderStatus? status,
@@ -92,7 +88,6 @@ class OrderModel {
         razorpay: razorpay ?? this.razorpay,
         userRef: userRef ?? this.userRef,
         user: user ?? this.user,
-        phone: phone ?? this.phone,
         totalAmount: totalAmount ?? this.totalAmount,
         orderDate: orderDate ?? this.orderDate,
         status: status ?? this.status,
@@ -109,7 +104,6 @@ class OrderModel {
         'razorpay': razorpay?.toMap(),
         'userRef': userRef,
         'user': user?.toMap(),
-        'phone': phone,
         'totalAmount': totalAmount,
         'orderDate': orderDate != null ? Timestamp.fromDate(orderDate!) : FieldValue.serverTimestamp(),
         'status': status.name,
@@ -124,7 +118,7 @@ class OrderModel {
 
   @override
   String toString() =>
-      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, userRef: $userRef, user: $user, phone: $phone, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shippingAddressRef: $shippingAddressRef, billingAddressRef: $billingAddressRef, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
+      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, userRef: $userRef, user: $user, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shippingAddressRef: $shippingAddressRef, billingAddressRef: $billingAddressRef, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
 
   @override
   bool operator ==(covariant OrderModel other) {
