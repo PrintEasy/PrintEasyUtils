@@ -5,6 +5,8 @@ class CollectionConstants {
 
   static const String helpCenter = 'help-center';
 
+  static const String aboutUs = 'about-us';
+
   static const String users = 'users';
 
   static const String address = 'address';

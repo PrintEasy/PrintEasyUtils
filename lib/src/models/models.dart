@@ -1,3 +1,4 @@
+export 'about_us_model.dart';
 export 'address_model.dart';
 export 'category/category.dart';
 export 'dialog_model.dart';
