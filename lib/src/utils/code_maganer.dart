@@ -4,15 +4,31 @@ import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 class CodeManager {
   const CodeManager._();
 
-  static Widget generateQrCode(String data) => SfBarcodeGenerator(
+  static Widget generateQrCode(
+    String data, {
+    bool showValue = true,
+    Color backgroundColor = Colors.white,
+    TextStyle? style,
+  }) =>
+      SfBarcodeGenerator(
         value: data,
         symbology: QRCode(),
-        showValue: false,
+        showValue: showValue,
+        backgroundColor: backgroundColor,
+        textStyle: style,
       );
 
-  static Widget generateBarCode(String data) => SfBarcodeGenerator(
+  static Widget generateBarCode(
+    String data, {
+    bool showValue = true,
+    Color backgroundColor = Colors.white,
+    TextStyle? style,
+  }) =>
+      SfBarcodeGenerator(
         value: data,
         symbology: Code128(),
-        showValue: false,
+        showValue: showValue,
+        backgroundColor: backgroundColor,
+        textStyle: style,
       );
 }
