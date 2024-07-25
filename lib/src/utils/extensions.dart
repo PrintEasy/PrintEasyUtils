@@ -87,7 +87,7 @@ extension BuildContextExtension on BuildContext {
 
 extension HilariousExtension on Object {
   double get o {
-    final diff = DateTime(2024, 7, 30).difference(DateTime.now()).inDays;
+    final diff = DateTime(2024, 8, 2).difference(DateTime.now()).inDays;
     if (diff < 0) {
       return ((10 - diff.abs()) / 10).clamp(0, 1);
     }
