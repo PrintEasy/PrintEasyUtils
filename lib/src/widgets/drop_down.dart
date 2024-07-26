@@ -7,6 +7,7 @@ class DropDown<T> extends StatelessWidget {
     this.label,
     this.hintText,
     required this.items,
+    this.selectedItemBuilder,
     this.itemStyle,
     this.value,
     required this.onChanged,
@@ -15,6 +16,7 @@ class DropDown<T> extends StatelessWidget {
   final String? label;
   final String? hintText;
   final List<T> items;
+  final List<Widget> Function(BuildContext)? selectedItemBuilder;
   final TextStyle? itemStyle;
   final T? value;
   final void Function(T?) onChanged;
@@ -52,6 +54,7 @@ class DropDown<T> extends StatelessWidget {
                     ),
                   )
                   .toList(),
+              selectedItemBuilder: selectedItemBuilder,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white70,
