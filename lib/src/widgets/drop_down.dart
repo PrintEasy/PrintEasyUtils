@@ -7,6 +7,7 @@ class DropDown<T> extends StatelessWidget {
     this.label,
     this.hintText,
     required this.items,
+    this.itemBuilder,
     this.selectedItemBuilder,
     this.itemStyle,
     this.value,
@@ -16,6 +17,7 @@ class DropDown<T> extends StatelessWidget {
   final String? label;
   final String? hintText;
   final List<T> items;
+  final Widget Function(BuildContext, T)? itemBuilder;
   final List<Widget> Function(BuildContext)? selectedItemBuilder;
   final TextStyle? itemStyle;
   final T? value;
@@ -44,13 +46,14 @@ class DropDown<T> extends StatelessWidget {
                   .map(
                     (type) => DropdownMenuItem<T>(
                       value: type,
-                      child: Text(
-                        '$type',
-                        style: itemStyle ??
-                            const TextStyle(
-                              color: Colors.black,
-                            ),
-                      ),
+                      child: itemBuilder?.call(context, type) ??
+                          Text(
+                            '$type',
+                            style: itemStyle ??
+                                const TextStyle(
+                                  color: Colors.black,
+                                ),
+                          ),
                     ),
                   )
                   .toList(),
