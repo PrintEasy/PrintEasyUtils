@@ -18,6 +18,7 @@ class AppLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) => TapHandler(
         onTap: onTap,
+        radius: 0,
         child: Image.asset(
           AssetConstants.logo,
           fit: fit ?? BoxFit.cover,
