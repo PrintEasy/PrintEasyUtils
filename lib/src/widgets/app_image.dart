@@ -32,9 +32,11 @@ class AppImage extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             child: SizedBox(
-              child: AppLogo(
-                height: placeholderHeight,
-                width: placeholderWidth,
+              child: UnconstrainedBox(
+                child: AppLogo(
+                  height: placeholderHeight,
+                  width: placeholderWidth,
+                ),
               ),
             ),
           ),
