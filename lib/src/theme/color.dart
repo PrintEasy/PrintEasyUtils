@@ -6,6 +6,7 @@ class AppColors {
 
   static final Color primary = const Color(0xFFED1C24).o;
   static final Color onPrimary = const Color(0xFFFCD9DA).o;
+  static final Color imageBackground = const Color(0xFFFFF1F2).o;
   static final Color secondary = const Color(0xFF51C1E6).o;
   static final Color accent = const Color(0xFF2C72DB).o;
 
