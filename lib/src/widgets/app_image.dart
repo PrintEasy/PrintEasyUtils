@@ -26,20 +26,20 @@ class AppImage extends StatelessWidget {
           fit: BoxFit.cover,
           height: height,
           width: width,
-          placeholder: (context, url) => DecoratedBox(
-            decoration: BoxDecoration(
-              color: AppColors.imageBackground.o,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: SizedBox(
-              child: UnconstrainedBox(
-                child: AppLogo(
-                  height: placeholderHeight,
-                  width: placeholderWidth,
-                ),
-              ),
-            ),
-          ),
+          // placeholder: (context, url) => DecoratedBox(
+          //   decoration: BoxDecoration(
+          //     color: AppColors.imageBackground.o,
+          //     borderRadius: BorderRadius.circular(16),
+          //   ),
+          //   child: SizedBox(
+          //     child: UnconstrainedBox(
+          //       child: AppLogo(
+          //         height: placeholderHeight,
+          //         width: placeholderWidth,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ),
       );
 }
