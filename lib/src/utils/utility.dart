@@ -76,6 +76,7 @@ class Utility {
       if (kDebugMode) {
         print('Error picking image: $e');
       }
+      await Utility.showInfoDialog(DialogModel.error(e.toString()));
     } finally {
       if (showLoader) {
         Utility.closeLoader();
