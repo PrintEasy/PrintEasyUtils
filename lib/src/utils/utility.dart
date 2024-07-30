@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -97,6 +98,36 @@ class Utility {
       return null;
     }
     final imageBytes = await image.readAsBytes();
+
+    if (imageBytes.length < minSizeInKb * 1024) {
+      await Utility.showInfoDialog(DialogModel.error(
+        'The image you uploaded appears to be small. For the best print quality, please use a higher resolution image.',
+        'Alert',
+      ));
+    }
+    return imageBytes;
+  }
+
+  static Future<Uint8List?> pickFileBytes({
+    int minSizeInKb = 900,
+  }) async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      allowMultiple: false,
+      allowCompression: false,
+    );
+    if (result == null) {
+      return null;
+    }
+    if (result.files.isEmpty) {
+      return null;
+    }
+    final file = result.files.first;
+    final imageBytes = file.bytes;
+    if (imageBytes == null) {
+      return null;
+    }
+
     if (imageBytes.length < minSizeInKb * 1024) {
       await Utility.showInfoDialog(DialogModel.error(
         'The image you uploaded appears to be small. For the best print quality, please use a higher resolution image.',
