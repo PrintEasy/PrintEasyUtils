@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:file_picker/file_picker.dart';
@@ -108,7 +109,7 @@ class Utility {
     return imageBytes;
   }
 
-  static Future<Uint8List?> pickFileBytes({
+  static Future<String?> pickFileBytes({
     int minSizeInKb = 900,
   }) async {
     final result = await FilePicker.platform.pickFiles(
@@ -134,7 +135,7 @@ class Utility {
         'Alert',
       ));
     }
-    return imageBytes;
+    return jsonEncode(imageBytes);
   }
 
   static Future<void> showInfoDialog(DialogModel dialog) async {
