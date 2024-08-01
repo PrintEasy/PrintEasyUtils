@@ -32,6 +32,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   Uint8List? barCodeData;
   Uint8List? imageBytes;
+  String? imagePath;
 
   final barCodeKey = GlobalKey();
 
@@ -66,6 +67,17 @@ class _HomeViewState extends State<HomeView> {
     setState(() {});
   }
 
+  void pickImagePath() async {
+    final data = await Utility.pickImageBlob();
+    if (data == null) {
+      return;
+    }
+    imagePath = data;
+    // imageBytes = json.decode(data);
+    // await Future.delayed(const Duration(seconds: 1));
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,13 +102,16 @@ class _HomeViewState extends State<HomeView> {
               //   Image.memory(barCodeData!),
               // ],
               ElevatedButton(
-                onPressed: pickImage,
+                onPressed: pickImagePath,
                 child: const Text('Pick image'),
               ),
               if (imageBytes != null) ...[
                 const SizedBox(height: 40),
                 Image(image: MemoryImage(imageBytes!)),
-                // Image.memory(imageBytes!),
+              ],
+              if (imagePath != null) ...[
+                const SizedBox(height: 40),
+                Image(image: NetworkImage(imagePath!)),
               ],
             ],
           ),

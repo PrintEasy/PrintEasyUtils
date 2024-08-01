@@ -108,6 +108,19 @@ class Utility {
     return imageBytes;
   }
 
+  static Future<String?> pickImageBlob({
+    ImageSource? source,
+    int minSizeInKb = 900,
+  }) async {
+    var image = await pickImage(
+      source: source,
+    );
+    if (image == null) {
+      return null;
+    }
+    return image.path;
+  }
+
   static Future<void> showInfoDialog(DialogModel dialog) async {
     await Get.dialog(
       DialogWrapper(
