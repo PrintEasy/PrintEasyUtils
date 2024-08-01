@@ -71,7 +71,10 @@ class Utility {
     try {
       image = await ImagePicker().pickImage(
         source: source ?? ImageSource.gallery,
-        imageQuality: 80,
+        imageQuality: 100,
+        maxHeight: 800,
+        maxWidth: 600,
+        requestFullMetadata: false,
       );
     } catch (e) {
       if (kDebugMode) {
@@ -106,19 +109,6 @@ class Utility {
       ));
     }
     return imageBytes;
-  }
-
-  static Future<String?> pickImageBlob({
-    ImageSource? source,
-    int minSizeInKb = 900,
-  }) async {
-    var image = await pickImage(
-      source: source,
-    );
-    if (image == null) {
-      return null;
-    }
-    return image.path;
   }
 
   static Future<void> showInfoDialog(DialogModel dialog) async {
