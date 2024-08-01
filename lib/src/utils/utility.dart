@@ -71,7 +71,7 @@ class Utility {
     try {
       image = await ImagePicker().pickImage(
         source: source ?? ImageSource.gallery,
-        imageQuality: 100,
+        imageQuality: 80,
       );
     } catch (e) {
       if (kDebugMode) {
