@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:ui';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -73,6 +71,7 @@ class Utility {
     try {
       image = await ImagePicker().pickImage(
         source: source ?? ImageSource.gallery,
+        imageQuality: 100,
       );
     } catch (e) {
       if (kDebugMode) {
@@ -107,35 +106,6 @@ class Utility {
       ));
     }
     return imageBytes;
-  }
-
-  static Future<String?> pickFileBytes({
-    int minSizeInKb = 900,
-  }) async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-      allowCompression: false,
-    );
-    if (result == null) {
-      return null;
-    }
-    if (result.files.isEmpty) {
-      return null;
-    }
-    final file = result.files.first;
-    final imageBytes = file.bytes;
-    if (imageBytes == null) {
-      return null;
-    }
-
-    if (imageBytes.length < minSizeInKb * 1024) {
-      await Utility.showInfoDialog(DialogModel.error(
-        'The image you uploaded appears to be small. For the best print quality, please use a higher resolution image.',
-        'Alert',
-      ));
-    }
-    return jsonEncode(imageBytes);
   }
 
   static Future<void> showInfoDialog(DialogModel dialog) async {

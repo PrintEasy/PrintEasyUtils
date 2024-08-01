@@ -11,34 +11,39 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: HomeView(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   Uint8List? barCodeData;
-  Uint8List? qrCodeData;
+  Uint8List? imageBytes;
 
   final barCodeKey = GlobalKey();
-  final qrCodeKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-    Utility.updateLater(_generateBytes);
+    // if (mounted) {
+    //   Utility.updateLater(generateBytes);
+    // }
   }
 
-  void _generateBytes() async {
-    qrCodeData = await Utility.captureFromWidget(
-      SizedBox(
-        height: 100,
-        child: CodeManager.generateQrCode('printeasy.store'),
-      ),
-      context: context,
-    );
+  void generateBytes() async {
     barCodeData = await Utility.captureFromWidget(
       SizedBox(
         height: 50,
@@ -50,43 +55,50 @@ class _MyAppState extends State<MyApp> {
     setState(() {});
   }
 
+  void pickImage() async {
+    final data = await Utility.pickImageBytes();
+    if (data == null) {
+      return;
+    }
+    imageBytes = data;
+    // imageBytes = json.decode(data);
+    // await Future.delayed(const Duration(seconds: 1));
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: SingleChildScrollView(
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.5,
-            child: Column(
-              children: [
-                RepaintBoundary(
-                  key: barCodeKey,
-                  child: SizedBox(
-                    height: 50,
-                    child: CodeManager.generateBarCode('7D101231752'),
-                  ),
-                ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Plugin example app'),
+      ),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width * 0.5,
+          child: Column(
+            children: [
+              // RepaintBoundary(
+              //   key: barCodeKey,
+              //   child: SizedBox(
+              //     height: 50,
+              //     child: CodeManager.generateBarCode('7D101231752'),
+              //   ),
+              // ),
+              // const SizedBox(height: 40),
+              // if (barCodeData != null) ...[
+              //   const SizedBox(height: 40),
+              //   Image.memory(barCodeData!),
+              // ],
+              ElevatedButton(
+                onPressed: pickImage,
+                child: const Text('Pick image'),
+              ),
+              if (imageBytes != null) ...[
                 const SizedBox(height: 40),
-                RepaintBoundary(
-                  key: qrCodeKey,
-                  child: SizedBox(
-                    height: 100,
-                    child: CodeManager.generateQrCode('printeasy.store'),
-                  ),
-                ),
-                if (barCodeData != null) ...[
-                  const SizedBox(height: 40),
-                  Image.memory(barCodeData!),
-                ],
-                if (qrCodeData != null) ...[
-                  const SizedBox(height: 40),
-                  Image.memory(qrCodeData!),
-                ],
+                Image(image: MemoryImage(imageBytes!)),
+                // Image.memory(imageBytes!),
               ],
-            ),
+            ],
           ),
         ),
       ),
