@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
@@ -72,9 +73,9 @@ class Utility {
       image = await ImagePicker().pickImage(
         source: source ?? ImageSource.gallery,
         imageQuality: 100,
-        maxHeight: 800,
-        maxWidth: 600,
-        requestFullMetadata: false,
+        maxHeight: 1600,
+        maxWidth: 1200,
+        requestFullMetadata: true,
       );
     } catch (e) {
       if (kDebugMode) {
@@ -92,7 +93,7 @@ class Utility {
 
   static Future<Uint8List?> pickImageBytes({
     ImageSource? source,
-    int minSizeInKb = 900,
+    int minSizeInKb = 700,
   }) async {
     var image = await pickImage(
       source: source,
@@ -101,8 +102,12 @@ class Utility {
       return null;
     }
     final imageBytes = await image.readAsBytes();
+    // final size = imageBytes.length;
+    final size = await image.length();
 
-    if (imageBytes.length < minSizeInKb * 1024) {
+    final sizeInKb = size / 1024;
+
+    if (sizeInKb < minSizeInKb) {
       await Utility.showInfoDialog(DialogModel.error(
         'The image you uploaded appears to be small. For the best print quality, please use a higher resolution image.',
         'Alert',
@@ -120,12 +125,12 @@ class Utility {
             if (dialog.title != null)
               Text(
                 dialog.title!,
-                style: Get.context!.textTheme.titleLarge,
+                style: Get.context?.textTheme.titleLarge,
               ),
             const SizedBox(height: 16),
             Text(
               dialog.data,
-              style: Get.context!.textTheme.bodyLarge,
+              style: Get.context?.textTheme.bodyLarge,
             ),
             const SizedBox(height: 16),
             AppButton(
