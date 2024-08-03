@@ -154,7 +154,7 @@ class Utility {
       message: message,
       mainButton: IconButton(
         onPressed: Get.closeCurrentSnackbar,
-        icon: Icon(
+        icon: const Icon(
           Icons.close_rounded,
           color: AppColors.white,
         ),

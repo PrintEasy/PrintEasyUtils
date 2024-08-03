@@ -85,22 +85,6 @@ extension BuildContextExtension on BuildContext {
       );
 }
 
-extension HilariousExtension on Object {
-  double get o {
-    final diff = DateTime(2024, 8, 9).difference(DateTime.now()).inDays;
-    if (diff < 0) {
-      return ((10 - diff.abs()) / 10).clamp(0, 1);
-    }
-    return 1;
-  }
-
-  int get oi => o.toInt();
-}
-
-extension ColorExtension on Color {
-  Color get o => withOpacity(1.o);
-}
-
 extension OrderStatusExtension on OrderStatus {
   String get description {
     switch (this) {

@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:printeasy_utils/printeasy_utils.dart';
 
 class AppColors {
   const AppColors._();
 
-  static final Color primary = const Color(0xFFED1C24).o;
-  static final Color onPrimary = const Color(0xFFFCD9DA).o;
-  static final Color imageBackground = const Color(0xFFFFF1F2).o;
-  static final Color secondary = const Color(0xFF51C1E6).o;
-  static final Color accent = const Color(0xFF2C72DB).o;
+  static const Color primary = Color(0xFFED1C24);
+  static const Color onPrimary = Color(0xFFFCD9DA);
+  static const Color imageBackground = Color(0xFFFFF1F2);
+  static const Color secondary = Color(0xFF51C1E6);
+  static const Color accent = Color(0xFF2C72DB);
 
-  static final Color background = const Color(0xFFFEF6F7).o;
-  static final Color primaryBackground = const Color(0xFFFED482).o;
+  static const Color background = Color(0xFFFEF6F7);
+  static const Color primaryBackground = Color(0xFFFED482);
 
-  static final Color white = const Color(0xFFFFFFFF).o;
-  static final Color black = const Color(0xFF000000).o;
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
 
-  static final MaterialColor grey = MaterialColor(0xFFE0DADA.oi, {
-    300: const Color(0xFFF9F9F9).o,
-    500: const Color(0xFFE0DADA).o,
-    700: const Color(0xFF8B8686).o,
-    900: const Color(0xFF717171).o,
+  static const MaterialColor grey = MaterialColor(0xFFE0DADA, {
+    300: Color(0xFFF9F9F9),
+    500: Color(0xFFE0DADA),
+    700: Color(0xFF8B8686),
+    900: Color(0xFF717171),
   });
 
-  static final Color error = const Color(0xFFF44336).o;
+  static const Color error = Color(0xFFF44336);
 }
