@@ -7,7 +7,11 @@ class AppColors {
   static const Color onPrimary = Color(0xFFFCD9DA);
   static const Color imageBackground = Color(0xFFFFF1F2);
   static const Color secondary = Color(0xFF51C1E6);
-  static const Color accent = Color(0xFF2C72DB);
+
+  static const MaterialColor accent = MaterialColor(0xFF2C72DB, {
+    500: Color(0xFF2C72DB),
+    900: Color(0xFF04275C),
+  });
 
   static const Color background = Color(0xFFFEF6F7);
   static const Color primaryBackground = Color(0xFFFED482);
