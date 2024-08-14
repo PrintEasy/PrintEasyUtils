@@ -23,4 +23,14 @@ class AppColors {
   });
 
   static const Color error = Color(0xFFF44336);
+
+  static const List<Color> greyGradient = [
+    Color(0xFFBED3D5),
+    Color(0xFF537375),
+  ];
+
+  static const List<Color> accentGradient = [
+    Color(0xFFD47E00),
+    Color(0xFFF89E31),
+  ];
 }
