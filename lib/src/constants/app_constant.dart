@@ -16,4 +16,13 @@ class PrintEasyConstants {
   static const double maxDesktopWidth = 1200;
 
   static const double maxLargeDesktopWidth = 1600;
+
+  static const List<String> csvMimes = [
+    'application/csv',
+    'application/x-csv',
+    'text/csv',
+    'text/comma-separated-values',
+    'text/x-comma-separated-values',
+    'text/tab-separated-values',
+  ];
 }
