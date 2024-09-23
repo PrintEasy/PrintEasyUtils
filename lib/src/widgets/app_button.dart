@@ -43,7 +43,7 @@ class AppButton extends StatelessWidget {
         height: height,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: backgroundColor ?? AppColors.accent,
+            backgroundColor: backgroundColor ?? AppColors.primary,
             foregroundColor: foregroundColor ?? AppColors.white,
             textStyle: context.titleMedium?.copyWith(
               fontWeight: FontWeight.w600,
@@ -51,7 +51,7 @@ class AppButton extends StatelessWidget {
             shape: StadiumBorder(
               side: BorderSide(
                 width: 1,
-                color: borderColor ?? backgroundColor ?? AppColors.accent,
+                color: borderColor ?? backgroundColor ?? AppColors.primary,
               ),
             ),
             elevation: 0,
