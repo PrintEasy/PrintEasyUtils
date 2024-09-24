@@ -14,6 +14,7 @@ class InputField extends StatelessWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.prefixText,
+    this.prefix,
     this.textInputType,
     this.readOnly = false,
     this.onTap,
@@ -47,6 +48,7 @@ class InputField extends StatelessWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final String? prefixText;
+  final Widget? prefix;
   final bool readOnly;
   final void Function()? onTap;
   final void Function(String)? onFieldSubmit;
@@ -167,6 +169,7 @@ class InputField extends StatelessWidget {
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
             prefixText: prefixText,
+            prefix: prefix,
           ),
           validator: validator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
