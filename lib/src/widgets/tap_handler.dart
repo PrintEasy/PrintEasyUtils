@@ -18,6 +18,7 @@ class TapHandler extends StatelessWidget {
         child: MouseRegion(
           cursor: onTap != null ? SystemMouseCursors.click : MouseCursor.defer,
           child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
             onTap: onTap,
             child: child,
           ),
