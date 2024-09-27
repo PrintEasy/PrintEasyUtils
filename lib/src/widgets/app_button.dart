@@ -48,11 +48,12 @@ class AppButton extends StatelessWidget {
             textStyle: context.titleMedium?.copyWith(
               fontWeight: FontWeight.w600,
             ),
-            shape: StadiumBorder(
+            shape: RoundedRectangleBorder(
               side: BorderSide(
                 width: 1,
                 color: borderColor ?? backgroundColor ?? AppColors.primary,
               ),
+              borderRadius: BorderRadius.circular(_isSmall ? 8 : 16),
             ),
             elevation: 0,
           ),

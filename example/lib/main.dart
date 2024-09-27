@@ -89,9 +89,9 @@ class _HomeViewState extends State<HomeView> {
               //   const SizedBox(height: 40),
               //   Image.memory(barCodeData!),
               // ],
-              ElevatedButton(
-                onPressed: pickImage,
-                child: const Text('Pick image'),
+              AppButton(
+                onTap: pickImage,
+                label: 'Pick image',
               ),
               if (imageBytes != null) ...[
                 const SizedBox(height: 40),
