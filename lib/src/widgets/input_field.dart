@@ -37,6 +37,7 @@ class InputField extends StatelessWidget {
     this.textCapitalization,
     this.autofillHints,
     this.inputFormatters,
+    this.autofocus,
   });
 
   final TextEditingController? controller;
@@ -70,6 +71,7 @@ class InputField extends StatelessWidget {
   final TextCapitalization? textCapitalization;
   final Iterable<String>? autofillHints;
   final List<TextInputFormatter>? inputFormatters;
+  final bool? autofocus;
 
   InputDecorationTheme _decorationTheme(BuildContext context) => context.theme.inputDecorationTheme;
 
@@ -137,6 +139,7 @@ class InputField extends StatelessWidget {
   Widget build(BuildContext context) => Material(
         type: MaterialType.transparency,
         child: TextFormField(
+          autofocus: autofocus ?? false,
           focusNode: focusNode,
           onFieldSubmitted: onFieldSubmit,
           maxLength: maxLength,
