@@ -41,6 +41,15 @@ class AddressModel {
 
   String get region => [state, country].join(', ');
 
+  String get fullAddress => [
+        line1,
+        line2,
+        city,
+        state,
+        country,
+        pinCode,
+      ].where((e) => e != null).join(', ');
+
   final String? id;
   final String name;
   final String mobile;
