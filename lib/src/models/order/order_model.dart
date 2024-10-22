@@ -17,6 +17,8 @@ class OrderModel {
     required this.items,
     required this.shippingAddressRef,
     required this.billingAddressRef,
+    this.shippingAddressId,
+    this.billingAddressId,
     this.shippingAddress,
     this.billingAddress,
   });
@@ -48,6 +50,8 @@ class OrderModel {
         fromFirestore: (snapshot, _) => AddressModel.fromMap(snapshot.data()!),
         toFirestore: (data, _) => data.toMap(),
       ),
+      shippingAddressId: map['shippingAddressId'] as String?,
+      billingAddressId: map['billingAddressId'] as String?,
       shippingAddress: map['shippingAddress'] != null ? AddressModel.fromMap(map['shippingAddress'] as Map<String, dynamic>) : null,
       billingAddress: map['billingAddress'] != null ? AddressModel.fromMap(map['shippingAddress'] as Map<String, dynamic>) : null,
     );
@@ -71,8 +75,10 @@ class OrderModel {
   final DateTime? orderDate;
   final OrderStatus status;
   final List<ItemModel> items;
+  final String? shippingAddressId;
   final DocumentReference<AddressModel> shippingAddressRef;
   final AddressModel? shippingAddress;
+  final String? billingAddressId;
   final DocumentReference<AddressModel> billingAddressRef;
   final AddressModel? billingAddress;
 
@@ -91,6 +97,8 @@ class OrderModel {
     List<ItemModel>? items,
     DocumentReference<AddressModel>? shippingAddressRef,
     DocumentReference<AddressModel>? billingAddressRef,
+    String? shippingAddressId,
+    String? billingAddressId,
     AddressModel? shippingAddress,
     AddressModel? billingAddress,
   }) =>
@@ -107,6 +115,8 @@ class OrderModel {
         items: items ?? this.items,
         shippingAddressRef: shippingAddressRef ?? this.shippingAddressRef,
         billingAddressRef: billingAddressRef ?? this.billingAddressRef,
+        shippingAddressId: shippingAddressId ?? this.shippingAddressId,
+        billingAddressId: billingAddressId ?? this.billingAddressId,
         shippingAddress: shippingAddress ?? this.shippingAddress,
         billingAddress: billingAddress ?? this.billingAddress,
       );
@@ -124,6 +134,8 @@ class OrderModel {
         'items': items.map((x) => x.toMap()).toList(),
         'shippingAddressRef': shippingAddressRef,
         'billingAddressRef': billingAddressRef,
+        'shippingAddressId': shippingAddressId,
+        'billingAddressId': billingAddressId,
         'shippingAddress': shippingAddress?.toMap(),
         'billingAddress': billingAddress?.toMap(),
       };
@@ -132,7 +144,7 @@ class OrderModel {
 
   @override
   String toString() =>
-      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, userRef: $userRef, user: $user, subcategory: $subcategory, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shippingAddressRef: $shippingAddressRef, billingAddressRef: $billingAddressRef, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
+      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, userRef: $userRef, user: $user, subcategory: $subcategory, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shippingAddressRef: $shippingAddressRef, billingAddressRef: $billingAddressRef, shipmentAddressId: $shippingAddressId, billingAddressId: $billingAddressId, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
 
   @override
   bool operator ==(covariant OrderModel other) {
