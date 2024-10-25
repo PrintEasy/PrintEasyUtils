@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
 
 class OrderModel {
@@ -28,7 +27,7 @@ class OrderModel {
       subcategory: Subcategory.fromName(map['subcategory'] as String? ?? ''),
       user: map['user'] != null ? UserModel.fromMap(map['user'] as Map<String, dynamic>) : null,
       totalAmount: map['totalAmount'] as double,
-      orderDate: map['orderDate'] != null ? (map['orderDate'] as Timestamp).toDate() : null,
+      orderDate: map['orderDate'] != null ? DateTime.parse(map['orderDate'] as String) : null,
       status: OrderStatus.fromName(map['status'] as String? ?? ''),
       items: (map['items'] as List? ?? [])
           .map<ItemModel>(
@@ -104,7 +103,7 @@ class OrderModel {
         'subcategory': subcategory.name,
         'user': user?.toMap(),
         'totalAmount': totalAmount,
-        'orderDate': orderDate != null ? Timestamp.fromDate(orderDate!) : FieldValue.serverTimestamp(),
+        'orderDate': orderDate?.toIso8601String(),
         'status': status.name,
         'items': items.map((x) => x.toMap()).toList(),
         'shippingAddressId': shippingAddressId,
