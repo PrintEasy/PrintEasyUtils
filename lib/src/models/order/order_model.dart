@@ -128,7 +128,7 @@ class OrderModel {
   bool operator ==(covariant OrderModel other) {
     if (identical(this, other)) return true;
 
-    return other.orderId == orderId;
+    return other.orderId == orderId && other.status == status;
   }
 
   @override
