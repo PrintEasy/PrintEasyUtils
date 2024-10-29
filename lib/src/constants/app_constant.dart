@@ -17,6 +17,8 @@ class PrintEasyConstants {
 
   static const double maxLargeDesktopWidth = 1600;
 
+  static const Duration timeOutDuration = Duration(seconds: 60);
+
   static const List<String> csvMimes = [
     'application/csv',
     'application/x-csv',
