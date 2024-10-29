@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -156,5 +158,50 @@ extension FirestoreReferenceExtension<T> on DocumentReference<T> {
     } catch (_) {
       return null;
     }
+  }
+}
+
+extension StringExtension on String {
+  Map<String, String> get header => {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $this',
+      };
+}
+
+extension RepoResponseExtension on RepoResponse<String> {
+  Map<String, dynamic> get body => jsonDecode(data!)['data'];
+
+  List<dynamic> get bodyList => statusCode == 204 ? [] : jsonDecode(data!)['data'] ?? [];
+}
+
+extension MapExtension on Map<String, dynamic> {
+  Map<String, dynamic> removeNullValues([bool removeEmptyStrings = false]) {
+    var result = <String, dynamic>{};
+    for (var entry in entries) {
+      var k = entry.key;
+      var v = entry.value;
+      if (v != null) {
+        if (removeEmptyStrings && v.runtimeType.toString().contains('String')) {
+          if ((v as String).trim().isNotEmpty) {
+            result[k] = v;
+          }
+        } else if (!v.runtimeType.toString().contains('List') && v.runtimeType.toString().contains('Map')) {
+          result[k] = MapExtension(v as Map<String, dynamic>).removeNullValues();
+        } else {
+          result[k] = v;
+        }
+      }
+    }
+    return result;
+  }
+
+  String makeQuery() {
+    var res = [];
+    for (var entry in removeNullValues().entries) {
+      var key = entry.key;
+      var value = entry.value;
+      res.add('$key=$value');
+    }
+    return res.join('&');
   }
 }
