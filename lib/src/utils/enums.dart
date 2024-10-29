@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
 
+enum RequestType {
+  get,
+  post,
+  // put,
+  patch,
+  // delete,
+  // upload;
+}
+
 enum LayoutType {
   mobile(PrintEasyConstants.maxMobileWidth),
   tablet(PrintEasyConstants.maxTabletWidth),
