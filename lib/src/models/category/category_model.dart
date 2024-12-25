@@ -7,14 +7,14 @@ class CategoryModel {
   const CategoryModel({
     this.id = '',
     this.name = '',
-    this.subcategories = const [],
+    this.subCategories = const [],
   });
 
   factory CategoryModel.fromMap(Map<String, dynamic> map) => CategoryModel(
         id: map['id'] as String? ?? '',
         name: map['name'] as String? ?? '',
-        subcategories: List<SubcategoryModel>.from(
-          (map['subcategories'] as List? ?? []).map<SubcategoryModel>(
+        subCategories: List<SubcategoryModel>.from(
+          (map['subCategories'] as List? ?? []).map<SubcategoryModel>(
             (x) => SubcategoryModel.fromMap(x as Map<String, dynamic>),
           ),
         ),
@@ -28,37 +28,37 @@ class CategoryModel {
   final String id;
   final String name;
 
-  final List<SubcategoryModel> subcategories;
+  final List<SubcategoryModel> subCategories;
 
   CategoryModel copyWith({
     String? id,
     String? name,
-    List<SubcategoryModel>? subcategories,
+    List<SubcategoryModel>? subCategories,
   }) =>
       CategoryModel(
         id: id ?? this.id,
         name: name ?? this.name,
-        subcategories: subcategories ?? this.subcategories,
+        subCategories: subCategories ?? this.subCategories,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         'id': id,
         'name': name,
-        'subcategories': subcategories.map((x) => x.toMap()).toList(),
+        'subCategories': subCategories.map((x) => x.toMap()).toList(),
       };
 
   String toJson() => json.encode(toMap());
 
   @override
-  String toString() => 'CategoryModel(id: $id, name: $name, subcategories: $subcategories)';
+  String toString() => 'CategoryModel(id: $id, name: $name, subCategories: $subCategories)';
 
   @override
   bool operator ==(covariant CategoryModel other) {
     if (identical(this, other)) return true;
 
-    return other.id == id && other.name == name && listEquals(other.subcategories, subcategories);
+    return other.id == id && other.name == name && listEquals(other.subCategories, subCategories);
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ subcategories.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode ^ subCategories.hashCode;
 }

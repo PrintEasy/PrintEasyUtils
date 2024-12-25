@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:printeasy_utils/printeasy_utils.dart';
 
 class SubcategoryModel {
   SubcategoryModel({
@@ -14,7 +15,11 @@ class SubcategoryModel {
         id: map['id'] as String? ?? '',
         categoryId: map['categoryId'] as String? ?? '',
         name: map['name'] as String? ?? '',
-        fields: (map['fields'] as List? ?? []).cast<String>(),
+        fields: (map['fields'] as List? ?? [])
+            .map(
+              (e) => OptionsModel.fromMap(e as Map<String, dynamic>),
+            )
+            .toList(),
       );
 
   factory SubcategoryModel.fromJson(String source) => SubcategoryModel.fromMap(
@@ -24,13 +29,13 @@ class SubcategoryModel {
   final String id;
   final String categoryId;
   final String name;
-  final List<String> fields;
+  final List<OptionsModel> fields;
 
   SubcategoryModel copyWith({
     String? id,
     String? categoryId,
     String? name,
-    List<String>? fields,
+    List<OptionsModel>? fields,
   }) =>
       SubcategoryModel(
         id: id ?? this.id,
@@ -43,13 +48,13 @@ class SubcategoryModel {
         'id': id,
         'categoryId': categoryId,
         'name': name,
-        'fields': fields,
+        'fields': fields.map((e) => e.toMap()).toList(),
       };
 
   Map<String, dynamic> toAPIMap() => <String, dynamic>{
         'categoryId': categoryId,
         'name': name,
-        'fields': fields,
+        'fields': fields.map((e) => e.toMap()).toList(),
       };
 
   String toJson() => json.encode(toMap());
