@@ -7,15 +7,15 @@ class CategoryModel {
   const CategoryModel({
     this.id = '',
     this.name = '',
-    this.properties = const [],
+    this.subcategories = const [],
   });
 
   factory CategoryModel.fromMap(Map<String, dynamic> map) => CategoryModel(
         id: map['id'] as String? ?? '',
         name: map['name'] as String? ?? '',
-        properties: List<PropertyConfigModel>.from(
-          (map['properties'] as List? ?? []).map<PropertyConfigModel>(
-            (x) => PropertyConfigModel.fromMap(x as Map<String, dynamic>),
+        subcategories: List<SubcategoryModel>.from(
+          (map['subcategories'] as List? ?? []).map<SubcategoryModel>(
+            (x) => SubcategoryModel.fromMap(x as Map<String, dynamic>),
           ),
         ),
       );
@@ -28,37 +28,37 @@ class CategoryModel {
   final String id;
   final String name;
 
-  final List<PropertyConfigModel> properties;
+  final List<SubcategoryModel> subcategories;
 
   CategoryModel copyWith({
     String? id,
     String? name,
-    List<PropertyConfigModel>? properties,
+    List<SubcategoryModel>? subcategories,
   }) =>
       CategoryModel(
         id: id ?? this.id,
         name: name ?? this.name,
-        properties: properties ?? this.properties,
+        subcategories: subcategories ?? this.subcategories,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         'id': id,
         'name': name,
-        'properties': properties.map((x) => x.toMap()).toList(),
+        'subcategories': subcategories.map((x) => x.toMap()).toList(),
       };
 
   String toJson() => json.encode(toMap());
 
   @override
-  String toString() => 'CategoryModel(id: $id, name: $name, properties: $properties)';
+  String toString() => 'CategoryModel(id: $id, name: $name, subcategories: $subcategories)';
 
   @override
   bool operator ==(covariant CategoryModel other) {
     if (identical(this, other)) return true;
 
-    return other.id == id && other.name == name && listEquals(other.properties, properties);
+    return other.id == id && other.name == name && listEquals(other.subcategories, subcategories);
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ properties.hashCode;
+  int get hashCode => id.hashCode ^ name.hashCode ^ subcategories.hashCode;
 }
