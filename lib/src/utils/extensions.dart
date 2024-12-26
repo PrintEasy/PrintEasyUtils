@@ -175,18 +175,36 @@ extension RepoResponseExtension on RepoResponse<String> {
 }
 
 extension MapExtension on Map<String, dynamic> {
-  Map<String, dynamic> removeNullValues([bool removeEmptyStrings = false]) {
+  Map<String, dynamic> removeNullValues({
+    bool removeEmptyStrings = false,
+    bool removeEmptyLists = false,
+  }) {
     var result = <String, dynamic>{};
     for (var entry in entries) {
       var k = entry.key;
       var v = entry.value;
       if (v != null) {
-        if (removeEmptyStrings && v.runtimeType.toString().contains('String')) {
-          if ((v as String).trim().isNotEmpty) {
+        if (v.runtimeType.toString().startsWith('String')) {
+          if (!removeEmptyStrings || (v as String).trim().isNotEmpty) {
             result[k] = v;
           }
-        } else if (!v.runtimeType.toString().contains('List') && v.runtimeType.toString().contains('Map')) {
-          result[k] = MapExtension(v as Map<String, dynamic>).removeNullValues();
+        } else if (v.runtimeType.toString().contains('List') || v.runtimeType.toString().contains('Array')) {
+          if (!removeEmptyLists || (v as List).isNotEmpty) {
+            result[k] = v.map((e) {
+              if (e.runtimeType.toString().contains('Map')) {
+                return (e as Map<String, dynamic>).removeNullValues(
+                  removeEmptyStrings: removeEmptyStrings,
+                  removeEmptyLists: removeEmptyLists,
+                );
+              }
+              return e;
+            }).toList();
+          }
+        } else if (v.runtimeType.toString().contains('Map')) {
+          result[k] = MapExtension(v as Map<String, dynamic>).removeNullValues(
+            removeEmptyStrings: removeEmptyStrings,
+            removeEmptyLists: removeEmptyLists,
+          );
         } else {
           result[k] = v;
         }
