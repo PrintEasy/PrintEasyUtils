@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class AppImage extends StatelessWidget {
@@ -7,20 +6,18 @@ class AppImage extends StatelessWidget {
     super.key,
     this.height,
     this.width,
-    this.placeholderHeight,
-    this.placeholderWidth,
+    this.fit,
   });
 
   final String imageUrl;
   final double? height;
   final double? width;
-  final double? placeholderHeight;
-  final double? placeholderWidth;
+  final BoxFit? fit;
 
   @override
-  Widget build(BuildContext context) => CachedNetworkImage(
-        imageUrl: imageUrl,
-        fit: BoxFit.cover,
+  Widget build(BuildContext context) => Image.network(
+        imageUrl,
+        fit: fit ?? BoxFit.cover,
         height: height,
         width: width,
       );
