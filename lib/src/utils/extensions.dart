@@ -14,12 +14,13 @@ extension BuildContextExtension on BuildContext {
   bool get isMobile => type == LayoutType.mobile;
 
   double? get leadingWidth => switch (type) {
-        LayoutType.mobile || LayoutType.tablet => null,
+        LayoutType.mobileSmall || LayoutType.mobile || LayoutType.tablet => null,
         // LayoutType.mobile || LayoutType.tablet => 150,
         LayoutType.desktop || LayoutType.desktopLarge => 200,
       };
 
   double get _scaleFactor => switch (type) {
+        LayoutType.mobileSmall => 0.7,
         LayoutType.mobile => 0.8,
         LayoutType.tablet => 0.9,
         LayoutType.desktop => 1,

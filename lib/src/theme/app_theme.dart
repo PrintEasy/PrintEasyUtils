@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:printeasy_utils/src/theme/theme.dart';
 
 ThemeData kAppTheme = ThemeData(
@@ -10,4 +11,5 @@ ThemeData kAppTheme = ThemeData(
     scrolledUnderElevation: 0,
     backgroundColor: AppColors.background,
   ),
+  textTheme: GoogleFonts.onestTextTheme(),
 );

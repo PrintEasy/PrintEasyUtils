@@ -9,6 +9,8 @@ class PrintEasyConstants {
 
   static const double appBarLeadingWidth = 200;
 
+  static const double maxSmallMobileWidth = 320;
+
   static const double maxMobileWidth = 480;
 
   static const double maxTabletWidth = 768;

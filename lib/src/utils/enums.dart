@@ -11,12 +11,16 @@ enum RequestType {
 }
 
 enum LayoutType {
+  mobileSmall(PrintEasyConstants.maxSmallMobileWidth),
   mobile(PrintEasyConstants.maxMobileWidth),
   tablet(PrintEasyConstants.maxTabletWidth),
   desktop(PrintEasyConstants.maxDesktopWidth),
   desktopLarge(PrintEasyConstants.maxLargeDesktopWidth);
 
   factory LayoutType.fromWidth(double width) {
+    if (width <= LayoutType.mobileSmall.maxWidth) {
+      return LayoutType.mobileSmall;
+    }
     if (width <= LayoutType.mobile.maxWidth) {
       return LayoutType.mobile;
     }

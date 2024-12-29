@@ -5,6 +5,7 @@ export 'dialog_model.dart';
 export 'gallery_model.dart';
 export 'order/order.dart';
 export 'print_image.dart';
+export 'product_model.dart';
 export 'repo_response.dart';
 export 'support/support.dart';
 export 'user_model.dart';
