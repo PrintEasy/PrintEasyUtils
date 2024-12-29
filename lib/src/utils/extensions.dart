@@ -11,7 +11,9 @@ extension BuildContextExtension on BuildContext {
 
   bool get isDesktop => [LayoutType.desktop, LayoutType.desktopLarge].contains(type);
 
-  bool get isMobile => type == LayoutType.mobile;
+  bool get isMobile => [LayoutType.mobile, LayoutType.mobileSmall].contains(type);
+
+  bool get isSmallMobile => type == LayoutType.mobileSmall;
 
   double? get leadingWidth => switch (type) {
         LayoutType.mobileSmall || LayoutType.mobile || LayoutType.tablet => null,
