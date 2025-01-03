@@ -10,6 +10,8 @@ class CategoryModel {
     this.value = '',
     this.subCategories = const [],
     this.configurations = const [],
+    this.illustrations = const [],
+    this.banners = const [],
   });
 
   factory CategoryModel.fromMap(Map<String, dynamic> map) => CategoryModel(
@@ -26,6 +28,16 @@ class CategoryModel {
             (x) => OptionsModel.fromMap(x as Map<String, dynamic>),
           ),
         ),
+        illustrations: List<IllustrationModel>.from(
+          (map['illustrations'] as List? ?? []).map<IllustrationModel>(
+            (x) => IllustrationModel.fromMap(x as Map<String, dynamic>),
+          ),
+        ),
+        banners: List<BannerModel>.from(
+          (map['banners'] as List? ?? []).map<BannerModel>(
+            (x) => BannerModel.fromMap(x as Map<String, dynamic>),
+          ),
+        ),
       );
 
   factory CategoryModel.fromJson(
@@ -38,6 +50,8 @@ class CategoryModel {
   final String value;
   final List<SubcategoryModel> subCategories;
   final List<OptionsModel> configurations;
+  final List<IllustrationModel> illustrations;
+  final List<BannerModel> banners;
 
   CategoryModel copyWith({
     String? id,
@@ -45,6 +59,8 @@ class CategoryModel {
     String? value,
     List<SubcategoryModel>? subCategories,
     List<OptionsModel>? configurations,
+    List<IllustrationModel>? illustrations,
+    List<BannerModel>? banners,
   }) =>
       CategoryModel(
         id: id ?? this.id,
@@ -52,6 +68,8 @@ class CategoryModel {
         value: value ?? this.value,
         subCategories: subCategories ?? this.subCategories,
         configurations: configurations ?? this.configurations,
+        illustrations: illustrations ?? this.illustrations,
+        banners: banners ?? this.banners,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -60,12 +78,15 @@ class CategoryModel {
         'value': value,
         'subCategories': subCategories.map((x) => x.toMap()).toList(),
         'configurations': configurations.map((x) => x.toMap()).toList(),
+        'illustrations': illustrations.map((x) => x.toMap()).toList(),
+        'banners': banners.map((x) => x.toMap()).toList(),
       };
 
   String toJson() => json.encode(toMap());
 
   @override
-  String toString() => 'CategoryModel(id: $id, name: $name, value: $value, subCategories: $subCategories, configurations: $configurations)';
+  String toString() =>
+      'CategoryModel(id: $id, name: $name, value: $value, subCategories: $subCategories, configurations: $configurations, illustrations: $illustrations)';
 
   @override
   bool operator ==(covariant CategoryModel other) {
@@ -75,9 +96,12 @@ class CategoryModel {
         other.name == name &&
         other.value == value &&
         listEquals(other.subCategories, subCategories) &&
-        listEquals(other.configurations, configurations);
+        listEquals(other.configurations, configurations) &&
+        listEquals(other.illustrations, illustrations) &&
+        listEquals(other.banners, banners);
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ value.hashCode ^ subCategories.hashCode ^ configurations.hashCode;
+  int get hashCode =>
+      id.hashCode ^ name.hashCode ^ value.hashCode ^ subCategories.hashCode ^ configurations.hashCode ^ illustrations.hashCode ^ banners.hashCode;
 }

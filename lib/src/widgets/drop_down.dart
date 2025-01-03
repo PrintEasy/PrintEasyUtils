@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
 
 class DropDown<T> extends StatelessWidget {
@@ -27,6 +28,8 @@ class DropDown<T> extends StatelessWidget {
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(12),
       );
+
+  InputDecorationTheme _decorationTheme(BuildContext context) => context.theme.inputDecorationTheme;
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -60,7 +63,7 @@ class DropDown<T> extends StatelessWidget {
               selectedItemBuilder: selectedItemBuilder,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Colors.white70,
+                fillColor: _decorationTheme(context).fillColor ?? Colors.white70,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 border: _border,
                 focusedBorder: _border,

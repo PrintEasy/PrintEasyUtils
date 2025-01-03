@@ -6,7 +6,7 @@ enum RequestType {
   post,
   // put,
   patch,
-  // delete,
+  delete,
   // upload;
 }
 
