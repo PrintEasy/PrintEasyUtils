@@ -169,3 +169,18 @@ enum PropertyType {
       }[data] ??
       PropertyType.pageSize;
 }
+
+enum CustomizationOption {
+  withIllustration('With Illustration'),
+  withoutIllustration('Without Illustration');
+
+  factory CustomizationOption.fromName(
+    String data,
+  ) =>
+      CustomizationOption.values.byName(
+        data,
+      );
+
+  const CustomizationOption(this.label);
+  final String label;
+}
