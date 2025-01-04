@@ -19,6 +19,8 @@ class ProductModel {
     required this.tags,
     required this.dimension,
     required this.configuration,
+    required this.illustrationOptions,
+    required this.presetText,
   });
 
   factory ProductModel.fromMap(Map<String, dynamic> map) => ProductModel(
@@ -40,6 +42,13 @@ class ProductModel {
             (x) => OptionsModel.fromMap(x as Map<String, dynamic>),
           ),
         ),
+        illustrationOptions: (map['illustrationOptions'] as List? ?? [])
+            .cast<String>()
+            .map(
+              CustomizationOption.fromName,
+            )
+            .toList(),
+        presetText: map['presetText'] as String? ?? '',
       );
 
   factory ProductModel.fromJson(String source) => ProductModel.fromMap(
@@ -60,6 +69,8 @@ class ProductModel {
   final List<String> tags;
   final DimensionModel dimension;
   final List<OptionsModel> configuration;
+  final List<CustomizationOption> illustrationOptions;
+  final String presetText;
 
   ProductModel copyWith({
     String? id,
@@ -76,6 +87,8 @@ class ProductModel {
     List<String>? tags,
     DimensionModel? dimension,
     List<OptionsModel>? configuration,
+    List<CustomizationOption>? illustrationOptions,
+    String? presetText,
   }) =>
       ProductModel(
         id: id ?? this.id,
@@ -92,6 +105,8 @@ class ProductModel {
         tags: tags ?? this.tags,
         dimension: dimension ?? this.dimension,
         configuration: configuration ?? this.configuration,
+        illustrationOptions: illustrationOptions ?? this.illustrationOptions,
+        presetText: presetText ?? this.presetText,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -109,13 +124,15 @@ class ProductModel {
         'tags': tags,
         'dimension': dimension.toMap(),
         'configuration': configuration.map((x) => x.toMap()).toList(),
+        'illustrationOptions': illustrationOptions.map((x) => x.name).toList(),
+        'presetText': presetText,
       };
 
   String toJson() => json.encode(toMap());
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOptions, presetText: $presetText)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -134,7 +151,9 @@ class ProductModel {
         other.slug == slug &&
         listEquals(other.tags, tags) &&
         other.dimension == dimension &&
-        listEquals(other.configuration, configuration);
+        listEquals(other.configuration, configuration) &&
+        listEquals(other.illustrationOptions, illustrationOptions) &&
+        other.presetText == presetText;
   }
 
   @override
@@ -152,5 +171,7 @@ class ProductModel {
       slug.hashCode ^
       tags.hashCode ^
       dimension.hashCode ^
-      configuration.hashCode;
+      configuration.hashCode ^
+      illustrationOptions.hashCode ^
+      presetText.hashCode;
 }
