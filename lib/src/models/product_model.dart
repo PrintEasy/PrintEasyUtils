@@ -24,6 +24,7 @@ class ProductModel {
     required this.presetText,
     required this.basePrice,
     required this.discountedPrice,
+    this.isInWishlist = false,
   });
 
   factory ProductModel.fromMap(Map<String, dynamic> map) => ProductModel(
@@ -55,6 +56,7 @@ class ProductModel {
         presetText: map['presetText'] as String? ?? '',
         basePrice: map['basePrice'] as double,
         discountedPrice: map['discountedPrice'] as double,
+        isInWishlist: map['isInWishlist'] as bool? ?? false,
       );
 
   factory ProductModel.fromJson(String source) => ProductModel.fromMap(
@@ -80,6 +82,7 @@ class ProductModel {
   final String presetText;
   final double basePrice;
   final double discountedPrice;
+  final bool isInWishlist;
 
   double get totalPrice => discountedPrice > 0 ? discountedPrice : basePrice;
 
@@ -152,7 +155,7 @@ class ProductModel {
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOptions, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOptions, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist)';
 
   @override
   bool operator ==(covariant ProductModel other) {
