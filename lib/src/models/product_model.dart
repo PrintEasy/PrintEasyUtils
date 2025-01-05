@@ -14,6 +14,7 @@ class ProductModel {
     required this.isCustomizable,
     required this.name,
     required this.description,
+    required this.care,
     required this.sku,
     required this.slug,
     required this.tags,
@@ -21,6 +22,8 @@ class ProductModel {
     required this.configuration,
     required this.illustrationOptions,
     required this.presetText,
+    required this.basePrice,
+    required this.discountedPrice,
   });
 
   factory ProductModel.fromMap(Map<String, dynamic> map) => ProductModel(
@@ -33,6 +36,7 @@ class ProductModel {
         isCustomizable: map['isCustomizable'] as bool,
         name: map['name'] as String,
         description: map['description'] as String,
+        care: map['care'] as String,
         sku: map['sku'] as String,
         slug: map['slug'] as String,
         tags: (map['tags'] as List? ?? []).cast<String>(),
@@ -49,6 +53,8 @@ class ProductModel {
             )
             .toList(),
         presetText: map['presetText'] as String? ?? '',
+        basePrice: map['basePrice'] as double,
+        discountedPrice: map['discountedPrice'] as double,
       );
 
   factory ProductModel.fromJson(String source) => ProductModel.fromMap(
@@ -64,6 +70,7 @@ class ProductModel {
   final bool isCustomizable;
   final String name;
   final String description;
+  final String care;
   final String sku;
   final String slug;
   final List<String> tags;
@@ -71,6 +78,10 @@ class ProductModel {
   final List<OptionsModel> configuration;
   final List<CustomizationOption> illustrationOptions;
   final String presetText;
+  final double basePrice;
+  final double discountedPrice;
+
+  double get totalPrice => discountedPrice > 0 ? discountedPrice : basePrice;
 
   ProductModel copyWith({
     String? id,
@@ -82,6 +93,7 @@ class ProductModel {
     bool? isCustomizable,
     String? name,
     String? description,
+    String? care,
     String? sku,
     String? slug,
     List<String>? tags,
@@ -89,6 +101,8 @@ class ProductModel {
     List<OptionsModel>? configuration,
     List<CustomizationOption>? illustrationOptions,
     String? presetText,
+    double? basePrice,
+    double? discountedPrice,
   }) =>
       ProductModel(
         id: id ?? this.id,
@@ -100,6 +114,7 @@ class ProductModel {
         isCustomizable: isCustomizable ?? this.isCustomizable,
         name: name ?? this.name,
         description: description ?? this.description,
+        care: care ?? this.care,
         sku: sku ?? this.sku,
         slug: slug ?? this.slug,
         tags: tags ?? this.tags,
@@ -107,6 +122,8 @@ class ProductModel {
         configuration: configuration ?? this.configuration,
         illustrationOptions: illustrationOptions ?? this.illustrationOptions,
         presetText: presetText ?? this.presetText,
+        basePrice: basePrice ?? this.basePrice,
+        discountedPrice: discountedPrice ?? this.discountedPrice,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -119,6 +136,7 @@ class ProductModel {
         'isCustomizable': isCustomizable,
         'name': name,
         'description': description,
+        'care': care,
         'sku': sku,
         'slug': slug,
         'tags': tags,
@@ -126,13 +144,15 @@ class ProductModel {
         'configuration': configuration.map((x) => x.toMap()).toList(),
         'illustrationOptions': illustrationOptions.map((x) => x.name).toList(),
         'presetText': presetText,
+        'basePrice': basePrice,
+        'discountedPrice': discountedPrice,
       };
 
   String toJson() => json.encode(toMap());
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOptions, presetText: $presetText)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOptions, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -147,13 +167,16 @@ class ProductModel {
         other.isCustomizable == isCustomizable &&
         other.name == name &&
         other.description == description &&
+        other.care == care &&
         other.sku == sku &&
         other.slug == slug &&
         listEquals(other.tags, tags) &&
         other.dimension == dimension &&
         listEquals(other.configuration, configuration) &&
         listEquals(other.illustrationOptions, illustrationOptions) &&
-        other.presetText == presetText;
+        other.presetText == presetText &&
+        other.basePrice == basePrice &&
+        other.discountedPrice == discountedPrice;
   }
 
   @override
@@ -167,11 +190,14 @@ class ProductModel {
       isCustomizable.hashCode ^
       name.hashCode ^
       description.hashCode ^
+      care.hashCode ^
       sku.hashCode ^
       slug.hashCode ^
       tags.hashCode ^
       dimension.hashCode ^
       configuration.hashCode ^
       illustrationOptions.hashCode ^
-      presetText.hashCode;
+      presetText.hashCode ^
+      basePrice.hashCode ^
+      discountedPrice.hashCode;
 }

@@ -120,6 +120,7 @@ class DropDown<T> extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               fillColor: _decorationTheme(context).fillColor ?? Colors.white70,
+              alignLabelWithHint: _decorationTheme(context).alignLabelWithHint,
               labelText: label,
               contentPadding: contentPadding ?? _decorationTheme(context).contentPadding ?? const EdgeInsets.all(16),
               hintText: hintText ?? (label != null ? 'Enter $label' : null),
