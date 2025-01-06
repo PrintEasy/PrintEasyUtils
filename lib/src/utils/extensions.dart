@@ -164,13 +164,6 @@ extension FirestoreReferenceExtension<T> on DocumentReference<T> {
   }
 }
 
-extension StringExtension on String {
-  Map<String, String> get header => {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $this',
-      };
-}
-
 extension RepoResponseExtension on RepoResponse<String> {
   Map<String, dynamic> get body => jsonDecode(data!)['data'];
 
