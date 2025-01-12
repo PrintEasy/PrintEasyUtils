@@ -140,18 +140,18 @@ enum AddressType {
   bool get isShipping => this == AddressType.shipping;
 }
 
-enum Subcategory {
+enum BookType {
   notebook('Notebook', 'note-book'),
   alphabetBook('Alphabet Book', null);
 
-  factory Subcategory.fromName(String data) =>
+  factory BookType.fromName(String data) =>
       {
-        Subcategory.notebook.name: Subcategory.notebook,
-        Subcategory.alphabetBook.name: Subcategory.alphabetBook,
+        BookType.notebook.name: BookType.notebook,
+        BookType.alphabetBook.name: BookType.alphabetBook,
       }[data] ??
-      Subcategory.notebook;
+      BookType.notebook;
 
-  const Subcategory(this.label, this.collection);
+  const BookType(this.label, this.collection);
   final String label;
   final String? collection;
 }

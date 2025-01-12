@@ -15,7 +15,7 @@ class ItemModel {
   });
 
   factory ItemModel.fromMap(Map<String, dynamic> map) => ItemModel(
-        subcategory: Subcategory.fromName(map['subcategory'] as String? ?? ''),
+        subcategory: BookType.fromName(map['subcategory'] as String? ?? ''),
         size: map['size'] as String? ?? '',
         dimensions: DimensionModel.fromMap(
           map['dimensions'] as Map<String, dynamic>? ?? {},
@@ -29,7 +29,7 @@ class ItemModel {
 
   factory ItemModel.fromJson(String source) => ItemModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  final Subcategory subcategory;
+  final BookType subcategory;
   final String size;
   final DimensionModel dimensions;
   final int pageCount;
@@ -43,7 +43,7 @@ class ItemModel {
   String get name => [size, subcategory.label].join(' ').trim();
 
   ItemModel copyWith({
-    Subcategory? subcategory,
+    BookType? subcategory,
     String? size,
     DimensionModel? dimensions,
     int? pageCount,

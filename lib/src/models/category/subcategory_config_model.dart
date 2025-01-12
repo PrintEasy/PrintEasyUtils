@@ -10,7 +10,7 @@ class SubcategoryConfigModel {
     this.name = '',
     this.subtitle,
     this.sku = '',
-    this.subcategory = Subcategory.notebook,
+    this.subcategory = BookType.notebook,
     this.properties = const [],
     this.variants = const [],
     this.catalog = const [],
@@ -22,7 +22,7 @@ class SubcategoryConfigModel {
         name: map['name'] as String? ?? '',
         subtitle: map['subtitle'] as String?,
         sku: map['sku'] as String? ?? '',
-        subcategory: Subcategory.fromName(map['subcategory'] as String? ?? ''),
+        subcategory: BookType.fromName(map['subcategory'] as String? ?? ''),
         properties: (map['properties'] as List? ?? [])
             .map<PropertiesModel>(
               (x) => PropertiesModel.fromMap(x as Map<String, dynamic>),
@@ -46,7 +46,7 @@ class SubcategoryConfigModel {
   final String name;
   final String? subtitle;
   final String sku;
-  final Subcategory subcategory;
+  final BookType subcategory;
   final List<PropertiesModel> properties;
   final List<VariantModel> variants;
   final List<String> catalog;
@@ -57,7 +57,7 @@ class SubcategoryConfigModel {
     String? name,
     String? subtitle,
     String? sku,
-    Subcategory? subcategory,
+    BookType? subcategory,
     List<PropertiesModel>? properties,
     List<VariantModel>? variants,
     List<String>? catalog,

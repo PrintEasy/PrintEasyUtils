@@ -25,7 +25,7 @@ class OrderModel {
       orderId: map['orderId'] as String?,
       shipmentId: map['shipmentId'] as String?,
       razorpay: map['razorpay'] != null ? RazorpayPaymentModel.fromMap(map['razorpay']) : null,
-      subcategory: Subcategory.fromName(map['subcategory'] as String? ?? ''),
+      subcategory: BookType.fromName(map['subcategory'] as String? ?? ''),
       userId: map['userId'] as String?,
       user: map['user'] != null ? UserModel.fromMap(map['user'] as Map<String, dynamic>) : null,
       totalAmount: map['totalAmount'] as double,
@@ -53,7 +53,7 @@ class OrderModel {
 
   final String? orderId;
   final String? shipmentId;
-  final Subcategory subcategory;
+  final BookType subcategory;
   final RazorpayPaymentModel? razorpay;
   final String? userId;
   final UserModel? user;
@@ -72,7 +72,7 @@ class OrderModel {
     String? orderId,
     String? shipmentId,
     RazorpayPaymentModel? razorpay,
-    Subcategory? subcategory,
+    BookType? subcategory,
     String? userId,
     UserModel? user,
     double? totalAmount,

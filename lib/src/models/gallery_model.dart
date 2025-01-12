@@ -20,7 +20,7 @@ class GalleryModel {
         original: map['original'] as String,
         thumbnail: map['thumbnail'] as String,
         tags: List<String>.from(map['tags'] as List? ?? []),
-        subcategory: Subcategory.fromName(map['subcategory'] as String? ?? ''),
+        subcategory: BookType.fromName(map['subcategory'] as String? ?? ''),
         createdAt: map['createdAt'] != null ? (map['createdAt'] as Timestamp).toDate() : null,
         updatedAt: map['updatedAt'] != null ? (map['updatedAt'] as Timestamp).toDate() : null,
       );
@@ -30,7 +30,7 @@ class GalleryModel {
   final String original;
   final String thumbnail;
   final List<String> tags;
-  final Subcategory subcategory;
+  final BookType subcategory;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -39,7 +39,7 @@ class GalleryModel {
     String? original,
     String? thumbnail,
     List<String>? tags,
-    Subcategory? subcategory,
+    BookType? subcategory,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) =>
