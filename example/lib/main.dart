@@ -93,6 +93,18 @@ class _HomeViewState extends State<HomeView> {
                 onTap: pickImage,
                 label: 'Pick image',
               ),
+              AppButton.small(
+                onTap: pickImage,
+                label: 'Pick image',
+              ),
+              AppButton.secondary(
+                onTap: pickImage,
+                label: 'Pick image',
+              ),
+              AppButton.secondarySmall(
+                onTap: pickImage,
+                label: 'Pick image',
+              ),
               if (imageBytes != null) ...[
                 const SizedBox(height: 40),
                 Image(image: MemoryImage(imageBytes!)),
