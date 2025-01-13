@@ -102,7 +102,7 @@ class AppButton extends StatelessWidget {
                 width: 1,
                 color: _borderColor,
               ),
-              borderRadius: BorderRadius.circular(_isSmall ? 8 : 16),
+              borderRadius: BorderRadius.circular(_isSmall ? 12 : 16),
             ),
             elevation: 0,
           ),

@@ -20,7 +20,7 @@ class ProductModel {
     required this.tags,
     required this.dimension,
     required this.configuration,
-    required this.illustrationOptions,
+    required this.illustrationOption,
     required this.presetText,
     required this.basePrice,
     required this.discountedPrice,
@@ -47,12 +47,7 @@ class ProductModel {
             (x) => OptionsModel.fromMap(x as Map<String, dynamic>),
           ),
         ),
-        illustrationOptions: (map['illustrationOptions'] as List? ?? [])
-            .cast<String>()
-            .map(
-              CustomizationOption.fromName,
-            )
-            .toList(),
+        illustrationOption: CustomizationOption.fromName(map['illustrationOption'] as String? ?? ''),
         presetText: map['presetText'] as String? ?? '',
         basePrice: map['basePrice'] as double,
         discountedPrice: map['discountedPrice'] as double,
@@ -78,7 +73,7 @@ class ProductModel {
   final List<String> tags;
   final DimensionModel dimension;
   final List<OptionsModel> configuration;
-  final List<CustomizationOption> illustrationOptions;
+  final CustomizationOption illustrationOption;
   final String presetText;
   final double basePrice;
   final double discountedPrice;
@@ -102,7 +97,7 @@ class ProductModel {
     List<String>? tags,
     DimensionModel? dimension,
     List<OptionsModel>? configuration,
-    List<CustomizationOption>? illustrationOptions,
+    CustomizationOption? illustrationOption,
     String? presetText,
     double? basePrice,
     double? discountedPrice,
@@ -123,7 +118,7 @@ class ProductModel {
         tags: tags ?? this.tags,
         dimension: dimension ?? this.dimension,
         configuration: configuration ?? this.configuration,
-        illustrationOptions: illustrationOptions ?? this.illustrationOptions,
+        illustrationOption: illustrationOption ?? this.illustrationOption,
         presetText: presetText ?? this.presetText,
         basePrice: basePrice ?? this.basePrice,
         discountedPrice: discountedPrice ?? this.discountedPrice,
@@ -145,7 +140,7 @@ class ProductModel {
         'tags': tags,
         'dimension': dimension.toMap(),
         'configuration': configuration.map((x) => x.toMap()).toList(),
-        'illustrationOptions': illustrationOptions.map((x) => x.name).toList(),
+        'illustrationOptions': illustrationOption.name,
         'presetText': presetText,
         'basePrice': basePrice,
         'discountedPrice': discountedPrice,
@@ -155,7 +150,7 @@ class ProductModel {
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOptions, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -176,7 +171,7 @@ class ProductModel {
         listEquals(other.tags, tags) &&
         other.dimension == dimension &&
         listEquals(other.configuration, configuration) &&
-        listEquals(other.illustrationOptions, illustrationOptions) &&
+        other.illustrationOption == illustrationOption &&
         other.presetText == presetText &&
         other.basePrice == basePrice &&
         other.discountedPrice == discountedPrice;
@@ -199,7 +194,7 @@ class ProductModel {
       tags.hashCode ^
       dimension.hashCode ^
       configuration.hashCode ^
-      illustrationOptions.hashCode ^
+      illustrationOption.hashCode ^
       presetText.hashCode ^
       basePrice.hashCode ^
       discountedPrice.hashCode;

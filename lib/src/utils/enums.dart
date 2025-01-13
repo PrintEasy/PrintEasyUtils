@@ -183,4 +183,6 @@ enum CustomizationOption {
 
   const CustomizationOption(this.label);
   final String label;
+
+  bool get isWithIllustration => this == CustomizationOption.withIllustration;
 }
