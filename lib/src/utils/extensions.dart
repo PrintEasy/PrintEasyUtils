@@ -9,6 +9,8 @@ import 'package:printeasy_utils/printeasy_utils.dart';
 extension BuildContextExtension on BuildContext {
   LayoutType get type => LayoutType.fromWidth(MediaQuery.of(this).size.width);
 
+  bool get isDesktopLarge => type == LayoutType.desktopLarge;
+
   bool get isDesktop => [LayoutType.desktop, LayoutType.desktopLarge].contains(type);
 
   bool get isMobile => [LayoutType.mobile, LayoutType.mobileSmall].contains(type);

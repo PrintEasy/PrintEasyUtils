@@ -12,6 +12,7 @@ class AppButton extends StatelessWidget {
     this.icon,
     this.iconPath,
     this.position = IconPosition.leading,
+    this.iconColor,
   })  : _isSmall = false,
         height = 48;
 
@@ -25,6 +26,7 @@ class AppButton extends StatelessWidget {
     this.icon,
     this.iconPath,
     this.position = IconPosition.leading,
+    this.iconColor,
   })  : _isSmall = true,
         height = 40;
 
@@ -37,6 +39,7 @@ class AppButton extends StatelessWidget {
     String? iconPath,
     IconData? icon,
     IconPosition position = IconPosition.leading,
+    Color? iconColor,
   }) =>
       AppButton(
         onTap: onTap,
@@ -47,6 +50,7 @@ class AppButton extends StatelessWidget {
         iconPath: iconPath,
         icon: icon,
         position: position,
+        iconColor: iconColor,
       );
 
   factory AppButton.secondarySmall({
@@ -58,6 +62,7 @@ class AppButton extends StatelessWidget {
     String? iconPath,
     IconData? icon,
     IconPosition position = IconPosition.leading,
+    Color? iconColor,
   }) =>
       AppButton.small(
         onTap: onTap,
@@ -68,6 +73,7 @@ class AppButton extends StatelessWidget {
         iconPath: iconPath,
         icon: icon,
         position: position,
+        iconColor: iconColor,
       );
 
   final VoidCallback? onTap;
@@ -78,6 +84,7 @@ class AppButton extends StatelessWidget {
   final IconData? icon;
   final String? iconPath;
   final IconPosition position;
+  final Color? iconColor;
 
   final bool _isSmall;
   final double height;
@@ -85,7 +92,7 @@ class AppButton extends StatelessWidget {
   Color get _backgroundColor => backgroundColor ?? AppColors.primary;
   Color get _foregroundColor => foregroundColor ?? AppColors.white;
   Color get _borderColor => borderColor ?? _backgroundColor;
-
+  Color get _iconColor => iconColor ?? _foregroundColor;
   @override
   Widget build(BuildContext context) => SizedBox(
         width: _isSmall ? null : double.maxFinite,
@@ -102,7 +109,7 @@ class AppButton extends StatelessWidget {
                 width: 1,
                 color: _borderColor,
               ),
-              borderRadius: BorderRadius.circular(_isSmall ? 12 : 16),
+              borderRadius: BorderRadius.circular(12),
             ),
             elevation: 0,
           ),
@@ -113,17 +120,11 @@ class AppButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if ((icon != null || iconPath != null) && position == IconPosition.leading) ...[
-                if (icon != null) ...[
-                  Icon(
-                    icon!,
-                    color: _foregroundColor,
-                  ),
-                ] else if (iconPath != null) ...[
-                  AppIcon(
-                    iconPath!,
-                    color: _foregroundColor,
-                  ),
-                ],
+                _Icon(
+                  icon: icon,
+                  iconPath: iconPath,
+                  color: _iconColor,
+                ),
                 SizedBox(width: _isSmall ? 8 : 16),
               ],
               Text(
@@ -131,20 +132,37 @@ class AppButton extends StatelessWidget {
               ),
               if ((icon != null || iconPath != null) && position == IconPosition.trailing) ...[
                 SizedBox(width: _isSmall ? 8 : 16),
-                if (icon != null) ...[
-                  Icon(
-                    icon!,
-                    color: _foregroundColor,
-                  ),
-                ] else if (iconPath != null) ...[
-                  AppIcon(
-                    iconPath!,
-                    color: _foregroundColor,
-                  ),
-                ],
+                _Icon(
+                  icon: icon,
+                  iconPath: iconPath,
+                  color: _iconColor,
+                ),
               ],
             ],
           ),
         ),
       );
+}
+
+class _Icon extends StatelessWidget {
+  const _Icon({
+    required this.icon,
+    required this.iconPath,
+    required this.color,
+  });
+
+  final IconData? icon;
+  final String? iconPath;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) => icon != null
+      ? Icon(
+          icon!,
+          color: color,
+        )
+      : AppIcon(
+          iconPath!,
+          color: color,
+        );
 }
