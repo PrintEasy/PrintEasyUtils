@@ -186,3 +186,14 @@ enum CustomizationOption {
 
   bool get isWithIllustration => this == CustomizationOption.withIllustration;
 }
+
+enum IllustrationSize {
+  small('Small'),
+  medium('Medium'),
+  large('Large');
+
+  factory IllustrationSize.fromName(String data) => IllustrationSize.values.byName(data.toLowerCase());
+
+  const IllustrationSize(this.label);
+  final String label;
+}

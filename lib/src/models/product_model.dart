@@ -26,6 +26,7 @@ class ProductModel {
     required this.discountedPrice,
     this.isInWishlist = false,
     this.sizeChart = '',
+    this.illustrationSize = IllustrationSize.large,
   });
 
   factory ProductModel.fromMap(Map<String, dynamic> map) => ProductModel(
@@ -54,6 +55,7 @@ class ProductModel {
         discountedPrice: map['discountedPrice'] as double,
         isInWishlist: map['isInWishlist'] as bool? ?? false,
         sizeChart: map['sizeChart'] as String? ?? '',
+        illustrationSize: IllustrationSize.fromName(map['illustrationSize'] as String? ?? IllustrationSize.large.name),
       );
 
   factory ProductModel.fromJson(String source) => ProductModel.fromMap(
@@ -81,6 +83,7 @@ class ProductModel {
   final double discountedPrice;
   final bool isInWishlist;
   final String sizeChart;
+  final IllustrationSize illustrationSize;
 
   double get totalPrice => discountedPrice > 0 ? discountedPrice : basePrice;
 
@@ -105,6 +108,7 @@ class ProductModel {
     double? basePrice,
     double? discountedPrice,
     String? sizeChart,
+    IllustrationSize? illustrationSize,
   }) =>
       ProductModel(
         id: id ?? this.id,
@@ -127,6 +131,7 @@ class ProductModel {
         basePrice: basePrice ?? this.basePrice,
         discountedPrice: discountedPrice ?? this.discountedPrice,
         sizeChart: sizeChart ?? this.sizeChart,
+        illustrationSize: illustrationSize ?? this.illustrationSize,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -150,13 +155,14 @@ class ProductModel {
         'basePrice': basePrice,
         'discountedPrice': discountedPrice,
         'sizeChart': sizeChart,
+        'illustrationSize': illustrationSize.name,
       };
 
   String toJson() => json.encode(toMap());
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -181,7 +187,8 @@ class ProductModel {
         other.presetText == presetText &&
         other.basePrice == basePrice &&
         other.discountedPrice == discountedPrice &&
-        other.sizeChart == sizeChart;
+        other.sizeChart == sizeChart &&
+        other.illustrationSize == illustrationSize;
   }
 
   @override
@@ -205,5 +212,6 @@ class ProductModel {
       presetText.hashCode ^
       basePrice.hashCode ^
       discountedPrice.hashCode ^
-      sizeChart.hashCode;
+      sizeChart.hashCode ^
+      illustrationSize.hashCode;
 }
