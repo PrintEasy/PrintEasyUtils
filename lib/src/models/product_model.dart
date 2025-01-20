@@ -150,7 +150,7 @@ class ProductModel {
         'tags': tags,
         'dimension': dimension.toMap(),
         'configuration': configuration.map((x) => x.toMap()).toList(),
-        'illustrationOillustrationOptionption': illustrationOption.name,
+        'illustrationOption': illustrationOption.name,
         'presetText': presetText,
         'basePrice': basePrice,
         'discountedPrice': discountedPrice,
