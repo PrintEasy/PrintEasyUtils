@@ -150,7 +150,7 @@ class ProductModel {
         'tags': tags,
         'dimension': dimension.toMap(),
         'configuration': configuration.map((x) => x.toMap()).toList(),
-        'illustrationOptions': illustrationOption.name,
+        'illustrationOillustrationOptionption': illustrationOption.name,
         'presetText': presetText,
         'basePrice': basePrice,
         'discountedPrice': discountedPrice,
@@ -162,7 +162,7 @@ class ProductModel {
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOptions: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize)';
 
   @override
   bool operator ==(covariant ProductModel other) {
