@@ -116,7 +116,10 @@ class Utility {
     return imageBytes;
   }
 
-  static Future<void> showInfoDialog(DialogModel dialog) async {
+  static Future<void> showInfoDialog(
+    DialogModel dialog, {
+    VoidCallback? onTap,
+  }) async {
     await Get.dialog(
       DialogWrapper(
         child: Column(
@@ -135,7 +138,10 @@ class Utility {
             const SizedBox(height: 16),
             AppButton(
               label: 'Okay',
-              onTap: Get.back,
+              onTap: () {
+                Get.back();
+                onTap?.call();
+              },
             ),
           ],
         ),
