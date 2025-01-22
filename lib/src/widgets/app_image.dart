@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppImage extends StatelessWidget {
   const AppImage(
@@ -15,10 +16,20 @@ class AppImage extends StatelessWidget {
   final BoxFit? fit;
 
   @override
-  Widget build(BuildContext context) => Image.network(
+  Widget build(BuildContext context) {
+    if (imageUrl.endsWith('.svg')) {
+      return SvgPicture.network(
         imageUrl,
-        fit: fit ?? BoxFit.cover,
         height: height,
         width: width,
+        fit: fit ?? BoxFit.cover,
       );
+    }
+    return Image.network(
+      imageUrl,
+      fit: fit ?? BoxFit.cover,
+      height: height,
+      width: width,
+    );
+  }
 }
