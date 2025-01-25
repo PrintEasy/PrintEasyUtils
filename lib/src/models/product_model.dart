@@ -49,13 +49,17 @@ class ProductModel {
             (x) => OptionsModel.fromMap(x as Map<String, dynamic>),
           ),
         ),
-        illustrationOption: CustomizationOption.fromName(map['illustrationOption'] as String? ?? ''),
+        illustrationOption: CustomizationOption.fromName(
+          map['illustrationOption'] as String? ?? CustomizationOption.withIllustration.name,
+        ),
         presetText: map['presetText'] as String? ?? '',
         basePrice: map['basePrice'] as double,
         discountedPrice: map['discountedPrice'] as double,
         isInWishlist: map['isInWishlist'] as bool? ?? false,
         sizeChart: map['sizeChart'] as String? ?? '',
-        illustrationSize: IllustrationSize.fromName(map['illustrationSize'] as String? ?? IllustrationSize.large.name),
+        illustrationSize: IllustrationSize.fromName(
+          map['illustrationSize'] as String? ?? IllustrationSize.large.name,
+        ),
       );
 
   factory ProductModel.fromJson(String source) => ProductModel.fromMap(
