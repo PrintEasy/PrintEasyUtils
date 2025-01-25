@@ -28,7 +28,7 @@ class Utility {
   }) async {
     var boundary = key.currentContext?.findRenderObject() as RenderRepaintBoundary?;
 
-    final image = await boundary?.toImage(pixelRatio: View.of((context ?? Get.context)!).devicePixelRatio);
+    final image = await boundary?.toImage(pixelRatio: View.of((context ?? Get.context)!).devicePixelRatio * 2.5);
     final byteData = await image?.toByteData(format: ImageByteFormat.png);
 
     image?.dispose();
