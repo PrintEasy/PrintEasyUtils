@@ -7,7 +7,7 @@ class OrderModel {
     this.orderId,
     this.shipmentId,
     this.razorpay,
-    required this.subcategory,
+    this.subcategory,
     this.userId,
     this.user,
     this.totalAmount = 0,
@@ -25,7 +25,7 @@ class OrderModel {
       orderId: map['orderId'] as String?,
       shipmentId: map['shipmentId'] as String?,
       razorpay: map['razorpay'] != null ? RazorpayPaymentModel.fromMap(map['razorpay']) : null,
-      subcategory: BookType.fromName(map['subcategory'] as String? ?? ''),
+      subcategory: map['subcategory'] != null ? BookType.fromName(map['subcategory'] as String) : null,
       userId: map['userId'] as String?,
       user: map['user'] != null ? UserModel.fromMap(map['user'] as Map<String, dynamic>) : null,
       totalAmount: map['totalAmount'] as double,
@@ -53,7 +53,7 @@ class OrderModel {
 
   final String? orderId;
   final String? shipmentId;
-  final BookType subcategory;
+  final BookType? subcategory;
   final RazorpayPaymentModel? razorpay;
   final String? userId;
   final UserModel? user;
@@ -105,7 +105,7 @@ class OrderModel {
         'orderId': orderId,
         'shipmentId': shipmentId,
         'razorpay': razorpay?.toMap(),
-        'subcategory': subcategory.name,
+        'subcategory': subcategory?.name,
         'userId': userId,
         'user': user?.toMap(),
         'totalAmount': totalAmount,
