@@ -182,15 +182,15 @@ extension MapExtension on Map<String, dynamic> {
       var k = entry.key;
       var v = entry.value;
       if (v != null) {
-        if (v.runtimeType.toString().startsWith('String')) {
-          if (!removeEmptyStrings || (v as String).trim().isNotEmpty) {
+        if (v is String) {
+          if (!removeEmptyStrings || v.trim().isNotEmpty) {
             result[k] = v;
           }
-        } else if (v.runtimeType.toString().contains('List') || v.runtimeType.toString().contains('Array')) {
-          if (!removeEmptyLists || (v as List).isNotEmpty) {
+        } else if (v is List) {
+          if (!removeEmptyLists || v.isNotEmpty) {
             result[k] = v.map((e) {
-              if (e.runtimeType.toString().contains('Map')) {
-                return (e as Map<String, dynamic>).removeNullValues(
+              if (e is Map) {
+                return Map<String, dynamic>.from(e).removeNullValues(
                   removeEmptyStrings: removeEmptyStrings,
                   removeEmptyLists: removeEmptyLists,
                 );
@@ -198,8 +198,8 @@ extension MapExtension on Map<String, dynamic> {
               return e;
             }).toList();
           }
-        } else if (v.runtimeType.toString().contains('Map')) {
-          result[k] = MapExtension(v as Map<String, dynamic>).removeNullValues(
+        } else if (v is Map) {
+          result[k] = Map<String, dynamic>.from(v).removeNullValues(
             removeEmptyStrings: removeEmptyStrings,
             removeEmptyLists: removeEmptyLists,
           );
