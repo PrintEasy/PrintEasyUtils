@@ -225,8 +225,8 @@ extension MapExtension on Map<String, dynamic> {
 
 extension WidgetExtension on Widget {
   Widget get shimmer => Shimmer.fromColors(
-        baseColor: AppColors.grey.shade300,
-        highlightColor: AppColors.grey.shade100,
+        baseColor: AppColors.onPrimary,
+        highlightColor: AppColors.imageBackground,
         child: this,
       );
 }
