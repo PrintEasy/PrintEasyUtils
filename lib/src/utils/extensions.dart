@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
+import 'package:shimmer/shimmer.dart';
 
 extension BuildContextExtension on BuildContext {
   LayoutType get type => LayoutType.fromWidth(MediaQuery.of(this).size.width);
@@ -220,4 +221,12 @@ extension MapExtension on Map<String, dynamic> {
     }
     return res.join('&');
   }
+}
+
+extension WidgetExtension on Widget {
+  Widget get shimmer => Shimmer.fromColors(
+        baseColor: AppColors.grey.shade300,
+        highlightColor: AppColors.grey.shade100,
+        child: this,
+      );
 }

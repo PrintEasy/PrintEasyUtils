@@ -32,3 +32,24 @@ class AppShimmer extends StatelessWidget {
         ),
       );
 }
+
+class TextShimmer extends StatelessWidget {
+  const TextShimmer(
+    this.text, {
+    super.key,
+    this.style,
+  });
+
+  final String text;
+  final TextStyle? style;
+
+  @override
+  Widget build(BuildContext context) => Shimmer.fromColors(
+        baseColor: AppColors.onPrimary,
+        highlightColor: AppColors.imageBackground,
+        child: Text(
+          text,
+          style: style,
+        ),
+      );
+}
