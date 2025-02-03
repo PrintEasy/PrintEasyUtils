@@ -45,3 +45,124 @@ flutter:
   assets:
     - assets/images/
     - assets/svg/
+
+  fonts:
+    - family: BeachBikini
+      fonts:
+        - asset: assets/fonts/BeachBikini.ttf
+
+    - family: Beachside
+      fonts:
+        - asset: assets/fonts/Beachside.ttf
+
+    - family: BeachSunrise
+      fonts:
+        - asset: assets/fonts/BeachSunrise.ttf
+
+    - family: Cakepop
+      fonts:
+        - asset: assets/fonts/Cakepop.ttf
+
+    - family: California
+      fonts:
+        - asset: assets/fonts/California.ttf
+
+    - family: Firefly
+      fonts:
+        - asset: assets/fonts/Firefly.ttf
+
+    - family: FreshLemonade
+      fonts:
+        - asset: assets/fonts/FreshLemonade.ttf
+
+    - family: HeySugar
+      fonts:
+        - asset: assets/fonts/HeySugar.ttf
+
+    - family: Honey
+      fonts:
+        - asset: assets/fonts/Honey.ttf
+
+    - family: Honeycomb
+      fonts:
+        - asset: assets/fonts/Honeycomb.ttf
+
+    - family: However
+      fonts:
+        - asset: assets/fonts/However.ttf
+
+    - family: IceCream
+      fonts:
+        - asset: assets/fonts/IceCream.ttf
+
+    - family: Jade Skies
+      fonts:
+        - asset: assets/fonts/Jade Skies.ttf
+
+    - family: Joyful
+      fonts:
+        - asset: assets/fonts/Joyful.ttf
+
+    - family: Love More
+      fonts:
+        - asset: assets/fonts/Love More.ttf
+
+    - family: Love Vibes
+      fonts:
+        - asset: assets/fonts/Love Vibes.ttf
+
+    - family: LoveAndHoney
+      fonts:
+        - asset: assets/fonts/LoveAndHoney.ttf
+
+    - family: MapleSugar
+      fonts:
+        - asset: assets/fonts/MapleSugar.ttf
+
+    - family: Meanwhile
+      fonts:
+        - asset: assets/fonts/Meanwhile.ttf
+
+    - family: Pink Rose
+      fonts:
+        - asset: assets/fonts/Pink Rose.ttf
+
+    - family: RainbowDreams
+      fonts:
+        - asset: assets/fonts/RainbowDreams.ttf
+
+    - family: Reality
+      fonts:
+        - asset: assets/fonts/Reality.ttf
+
+    - family: Scramble
+      fonts:
+        - asset: assets/fonts/Scramble.ttf
+
+    - family: Somekind
+      fonts:
+        - asset: assets/fonts/Somekind.ttf
+
+    - family: Sunlight
+      fonts:
+        - asset: assets/fonts/Sunlight.ttf
+
+    - family: TheWildOne
+      fonts:
+        - asset: assets/fonts/TheWildOne.ttf
+
+    - family: TheWildOneFun
+      fonts:
+        - asset: assets/fonts/TheWildOneFun.ttf
+
+    - family: TheWildOneSolid
+      fonts:
+        - asset: assets/fonts/TheWildOneSolid.ttf
+
+    - family: Thinker
+      fonts:
+        - asset: assets/fonts/Thinker.ttf
+
+    - family: TigerLand
+      fonts:
+        - asset: assets/fonts/TigerLand.ttf

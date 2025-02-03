@@ -197,3 +197,93 @@ enum IllustrationSize {
   const IllustrationSize(this.label);
   final String label;
 }
+
+enum PrintEasyFonts {
+  beachBikini('BeachBikini'),
+  beachside('Beachside'),
+  beachSunrise('BeachSunrise'),
+  cakepop('Cakepop'),
+  california('California'),
+  firefly('Firefly'),
+  freshLemonade('FreshLemonade'),
+  heySugar('HeySugar'),
+  honey('Honey'),
+  honeycomb('Honeycomb'),
+  however('However'),
+  iceCream('IceCream'),
+  jadeSkies('Jade Skies'),
+  joyful('Joyful'),
+  loveMore('Love More'),
+  loveVibes('Love Vibes'),
+  loveAndHoney('LoveAndHoney'),
+  mapleSugar('MapleSugar'),
+  meanwhile('Meanwhile'),
+  pinkRose('Pink Rose'),
+  rainbowDreams('RainbowDreams'),
+  reality('Reality'),
+  scramble('Scramble'),
+  somekind('Somekind'),
+  sunlight('Sunlight'),
+  theWildOne('TheWildOne'),
+  theWildOneFun('TheWildOneFun'),
+  theWildOneSolid('TheWildOneSolid'),
+  thinker('Thinker'),
+  tigerLand('TigerLand'),
+  ;
+
+  factory PrintEasyFonts.fromName(
+    String data,
+  ) =>
+      data.isEmpty ? PrintEasyFonts.values.first : PrintEasyFonts.values.byName(data);
+
+  const PrintEasyFonts(this.family);
+  final String family;
+}
+
+enum PrintEasyColors {
+  white(Colors.white),
+  black(Colors.black),
+  red(Colors.red),
+  pink(Colors.pink),
+  purple(Colors.purple),
+  deepPurple(Colors.deepPurple),
+  indigo(Colors.indigo),
+  blue(Colors.blue),
+  lightBlue(Colors.lightBlue),
+  cyan(Colors.cyan),
+  teal(Colors.teal),
+  green(Colors.green),
+  lightGreen(Colors.lightGreen),
+  lime(Colors.lime),
+  yellow(Colors.yellow),
+  amber(Colors.amber),
+  orange(Colors.orange),
+  deepOrange(Colors.deepOrange),
+  brown(Colors.brown),
+  blueGrey(Colors.blueGrey),
+  redAccent(Colors.redAccent),
+  pinkAccent(Colors.pinkAccent),
+  purpleAccent(Colors.purpleAccent),
+  deepPurpleAccent(Colors.deepPurpleAccent),
+  indigoAccent(Colors.indigoAccent),
+  blueAccent(Colors.blueAccent),
+  lightBlueAccent(Colors.lightBlueAccent),
+  cyanAccent(Colors.cyanAccent),
+  tealAccent(Colors.tealAccent),
+  greenAccent(Colors.greenAccent),
+  lightGreenAccent(Colors.lightGreenAccent),
+  limeAccent(Colors.limeAccent),
+  yellowAccent(Colors.yellowAccent),
+  amberAccent(Colors.amberAccent),
+  orangeAccent(Colors.orangeAccent),
+  deepOrangeAccent(Colors.deepOrangeAccent),
+  ;
+
+  factory PrintEasyColors.fromName(
+    String data,
+  ) =>
+      data.isEmpty ? PrintEasyColors.values.first : PrintEasyColors.values.byName(data);
+
+  const PrintEasyColors(this.color);
+  final Color color;
+}
