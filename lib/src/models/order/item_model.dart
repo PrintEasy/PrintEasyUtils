@@ -11,7 +11,7 @@ class ItemModel {
     required this.bundle,
     required this.price,
     required this.sku,
-    this.customImageUrl = '',
+    this.imageUrl = '',
   });
 
   factory ItemModel.fromMap(Map<String, dynamic> map) => ItemModel(
@@ -23,7 +23,7 @@ class ItemModel {
         pageCount: map['pageCount'] as int? ?? 0,
         bundle: map['bundle'] as int? ?? 0,
         sku: map['sku'] as String? ?? '',
-        customImageUrl: map['customImageUrl'] as String? ?? '',
+        imageUrl: map['imageUrl'] as String? ?? map['productImageUrl'] as String? ?? map['customImageUrl'] as String? ?? '',
         price: map['price'] as double? ?? 0,
       );
 
@@ -35,7 +35,7 @@ class ItemModel {
   final int pageCount;
   final int bundle;
   final String sku;
-  final String customImageUrl;
+  final String imageUrl;
   final double price;
 
   double get singleItemPrice => price / bundle;
@@ -49,7 +49,7 @@ class ItemModel {
     int? pageCount,
     int? bundle,
     String? sku,
-    String? customImageUrl,
+    String? imageUrl,
     double? price,
   }) =>
       ItemModel(
@@ -59,7 +59,7 @@ class ItemModel {
         pageCount: pageCount ?? this.pageCount,
         bundle: bundle ?? this.bundle,
         sku: sku ?? this.sku,
-        customImageUrl: customImageUrl ?? this.customImageUrl,
+        imageUrl: imageUrl ?? this.imageUrl,
         price: price ?? this.price,
       );
 
@@ -70,7 +70,7 @@ class ItemModel {
         'pageCount': pageCount,
         'bundle': bundle,
         'sku': sku,
-        'customImageUrl': customImageUrl,
+        'imageUrl': imageUrl,
         'price': price,
       };
 
@@ -78,7 +78,7 @@ class ItemModel {
 
   @override
   String toString() =>
-      'ItemModel(subcategory: $subcategory, size: $size, dimensions: $dimensions, pageCount: $pageCount, bundle: $bundle, sku: $sku, customImageUrl: $customImageUrl, price: $price)';
+      'ItemModel(subcategory: $subcategory, size: $size, dimensions: $dimensions, pageCount: $pageCount, bundle: $bundle, sku: $sku, imageUrl: $imageUrl, price: $price)';
 
   @override
   bool operator ==(covariant ItemModel other) {
@@ -90,7 +90,7 @@ class ItemModel {
         other.pageCount == pageCount &&
         other.bundle == bundle &&
         other.sku == sku &&
-        other.customImageUrl == customImageUrl &&
+        other.imageUrl == imageUrl &&
         other.price == price;
   }
 
@@ -102,6 +102,6 @@ class ItemModel {
       pageCount.hashCode ^
       bundle.hashCode ^
       sku.hashCode ^
-      customImageUrl.hashCode ^
+      imageUrl.hashCode ^
       price.hashCode;
 }
