@@ -97,6 +97,8 @@ class ProductModel {
 
   double get totalPrice => discountedPrice > 0 ? discountedPrice : basePrice;
 
+  String get identifier => slug.isEmpty ? id : slug.trim();
+
   ProductModel copyWith({
     String? id,
     String? categoryId,
