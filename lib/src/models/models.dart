@@ -1,7 +1,9 @@
 export 'about_us_model.dart';
 export 'address_model.dart';
 export 'category/category.dart';
+export 'commission_model.dart';
 export 'dialog_model.dart';
+export 'franchise_model.dart';
 export 'gallery_model.dart';
 export 'order/order.dart';
 export 'print_image.dart';
