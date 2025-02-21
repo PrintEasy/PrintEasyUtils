@@ -7,6 +7,7 @@ class OrderModel {
     this.orderId,
     this.shipmentId,
     this.razorpay,
+    this.shiprocket,
     this.subcategory,
     this.userId,
     this.user,
@@ -25,6 +26,7 @@ class OrderModel {
       orderId: map['orderId'] as String?,
       shipmentId: map['shipmentId'] as String?,
       razorpay: map['razorpay'] != null ? RazorpayPaymentModel.fromMap(map['razorpay']) : null,
+      shiprocket: map['shiprocket'] != null ? ShiprocketModel.fromMap(map['shiprocket'] as Map<String, dynamic>) : null,
       subcategory: map['subcategory'] != null ? BookType.fromName(map['subcategory'] as String) : null,
       userId: map['userId'] as String?,
       user: map['user'] != null ? UserModel.fromMap(map['user'] as Map<String, dynamic>) : null,
@@ -55,6 +57,7 @@ class OrderModel {
   final String? shipmentId;
   final BookType? subcategory;
   final RazorpayPaymentModel? razorpay;
+  final ShiprocketModel? shiprocket;
   final String? userId;
   final UserModel? user;
   final double totalAmount;
@@ -72,6 +75,7 @@ class OrderModel {
     String? orderId,
     String? shipmentId,
     RazorpayPaymentModel? razorpay,
+    ShiprocketModel? shiprocket,
     BookType? subcategory,
     String? userId,
     UserModel? user,
@@ -88,6 +92,7 @@ class OrderModel {
         orderId: orderId ?? this.orderId,
         shipmentId: shipmentId ?? this.shipmentId,
         razorpay: razorpay ?? this.razorpay,
+        shiprocket: shiprocket ?? this.shiprocket,
         subcategory: subcategory ?? this.subcategory,
         userId: userId ?? this.userId,
         user: user ?? this.user,
@@ -105,6 +110,7 @@ class OrderModel {
         'orderId': orderId,
         'shipmentId': shipmentId,
         'razorpay': razorpay?.toMap(),
+        'shiprocket': shiprocket?.toMap(),
         'subcategory': subcategory?.name,
         'userId': userId,
         'user': user?.toMap(),
@@ -122,7 +128,7 @@ class OrderModel {
 
   @override
   String toString() =>
-      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, userId: $userId, user: $user, subcategory: $subcategory, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shipmentAddressId: $shippingAddressId, billingAddressId: $billingAddressId, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
+      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, shiprocket: $shiprocket, userId: $userId, user: $user, subcategory: $subcategory, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shipmentAddressId: $shippingAddressId, billingAddressId: $billingAddressId, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
 
   @override
   bool operator ==(covariant OrderModel other) {
