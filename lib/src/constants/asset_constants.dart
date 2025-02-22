@@ -1,7 +1,7 @@
 class AssetConstants {
   const AssetConstants._();
 
-  static const String logo = 'assets/images/logo.png';
+  static const String logo = 'assets/images/logo.webp';
 
   static const String helpCenter = 'assets/svg/help_center.svg';
 

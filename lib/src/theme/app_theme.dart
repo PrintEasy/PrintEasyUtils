@@ -11,5 +11,5 @@ ThemeData kAppTheme = ThemeData(
     scrolledUnderElevation: 0,
     backgroundColor: AppColors.background,
   ),
-  textTheme: GoogleFonts.onestTextTheme(),
+  textTheme: GoogleFonts.nunitoTextTheme(),
 );

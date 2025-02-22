@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
@@ -13,6 +14,15 @@ class Utility {
   const Utility._();
 
   static void hideKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
+
+  static void setWebTitle(String title) {
+    SystemChrome.setApplicationSwitcherDescription(
+      ApplicationSwitcherDescription(
+        label: title,
+        primaryColor: 0xFFFFFFFF,
+      ),
+    );
+  }
 
   static void updateLater(VoidCallback callback, [bool addDelay = true]) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
