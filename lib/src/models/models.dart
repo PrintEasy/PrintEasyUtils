@@ -6,6 +6,8 @@ export 'dialog_model.dart';
 export 'franchise_model.dart';
 export 'gallery_model.dart';
 export 'order/order.dart';
+export 'place_detail_model.dart';
+export 'prediction_model.dart';
 export 'print_image.dart';
 export 'product_model.dart';
 export 'repo_response.dart';

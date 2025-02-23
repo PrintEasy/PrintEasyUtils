@@ -4,12 +4,12 @@ import 'package:printeasy_utils/printeasy_utils.dart';
 
 class FranchiseModel {
   const FranchiseModel({
-    required this.id,
+    this.id = '',
     required this.name,
     required this.address,
     required this.couponCode,
-    required this.settledAmount,
-    required this.unsettledAmount,
+    this.settledAmount = 0,
+    this.unsettledAmount = 0,
     required this.commission,
     required this.discount,
     required this.createdAt,
