@@ -9,6 +9,7 @@ class SubcategoryModel {
     required this.name,
     required this.value,
     required this.fields,
+    required this.isBook,
   });
 
   factory SubcategoryModel.fromMap(Map<String, dynamic> map) => SubcategoryModel(
@@ -17,6 +18,7 @@ class SubcategoryModel {
         name: map['name'] as String? ?? '',
         value: map['value'] as String? ?? '',
         fields: (map['fields'] as List? ?? []).cast<String>(),
+        isBook: map['isBook'] as bool? ?? false,
       );
 
   factory SubcategoryModel.fromJson(String source) => SubcategoryModel.fromMap(
@@ -27,6 +29,7 @@ class SubcategoryModel {
   final String categoryId;
   final String name;
   final String value;
+  final bool isBook;
   final List<String> fields;
 
   SubcategoryModel copyWith({
@@ -35,6 +38,7 @@ class SubcategoryModel {
     String? name,
     String? value,
     List<String>? fields,
+    bool? isBook,
   }) =>
       SubcategoryModel(
         id: id ?? this.id,
@@ -42,6 +46,7 @@ class SubcategoryModel {
         name: name ?? this.name,
         value: value ?? this.value,
         fields: fields ?? this.fields,
+        isBook: isBook ?? this.isBook,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -50,6 +55,7 @@ class SubcategoryModel {
         'name': name,
         'value': value,
         'fields': fields,
+        'isBook': isBook,
       };
 
   Map<String, dynamic> toAPIMap() => <String, dynamic>{
@@ -57,20 +63,26 @@ class SubcategoryModel {
         'name': name,
         'value': value,
         'fields': fields,
+        'isBook': isBook,
       };
 
   String toJson() => json.encode(toMap());
 
   @override
-  String toString() => 'SubcategoryModel(id: $id, categoryId: $categoryId, name: $name, value: $value, fields: $fields)';
+  String toString() => 'SubcategoryModel(id: $id, categoryId: $categoryId, name: $name, value: $value, fields: $fields, isBook: $isBook)';
 
   @override
   bool operator ==(covariant SubcategoryModel other) {
     if (identical(this, other)) return true;
 
-    return other.id == id && other.categoryId == categoryId && other.name == name && other.value == value && listEquals(other.fields, fields);
+    return other.id == id &&
+        other.categoryId == categoryId &&
+        other.name == name &&
+        other.value == value &&
+        listEquals(other.fields, fields) &&
+        other.isBook == isBook;
   }
 
   @override
-  int get hashCode => id.hashCode ^ categoryId.hashCode ^ name.hashCode ^ value.hashCode ^ fields.hashCode;
+  int get hashCode => id.hashCode ^ categoryId.hashCode ^ name.hashCode ^ value.hashCode ^ fields.hashCode ^ isBook.hashCode;
 }
