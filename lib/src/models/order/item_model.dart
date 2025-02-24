@@ -4,7 +4,7 @@ import 'package:printeasy_utils/printeasy_utils.dart';
 
 class ItemModel {
   const ItemModel({
-    required this.subcategory,
+    required this.bookType,
     required this.size,
     this.dimensions = const DimensionModel(),
     required this.pageCount,
@@ -15,7 +15,7 @@ class ItemModel {
   });
 
   factory ItemModel.fromMap(Map<String, dynamic> map) => ItemModel(
-        subcategory: BookType.fromName(map['subcategory'] as String? ?? ''),
+        bookType: map['bookType'] != null ? BookType.fromName(map['bookType'] as String) : null,
         size: map['size'] as String? ?? '',
         dimensions: DimensionModel.fromMap(
           map['dimensions'] as Map<String, dynamic>? ?? {},
@@ -29,7 +29,7 @@ class ItemModel {
 
   factory ItemModel.fromJson(String source) => ItemModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  final BookType subcategory;
+  final BookType? bookType;
   final String size;
   final DimensionModel dimensions;
   final int pageCount;
@@ -40,10 +40,10 @@ class ItemModel {
 
   double get singleItemPrice => price / bundle;
 
-  String get name => [size, subcategory.label].join(' ').trim();
+  String get name => [size, bookType?.label ?? ''].join(' ').trim();
 
   ItemModel copyWith({
-    BookType? subcategory,
+    BookType? bookType,
     String? size,
     DimensionModel? dimensions,
     int? pageCount,
@@ -53,7 +53,7 @@ class ItemModel {
     double? price,
   }) =>
       ItemModel(
-        subcategory: subcategory ?? this.subcategory,
+        bookType: bookType ?? this.bookType,
         size: size ?? this.size,
         dimensions: dimensions ?? this.dimensions,
         pageCount: pageCount ?? this.pageCount,
@@ -64,7 +64,7 @@ class ItemModel {
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
-        'subcategory': subcategory.name,
+        'bookType': bookType?.name,
         'size': size,
         'dimensions': dimensions.toMap(),
         'pageCount': pageCount,
@@ -78,13 +78,13 @@ class ItemModel {
 
   @override
   String toString() =>
-      'ItemModel(subcategory: $subcategory, size: $size, dimensions: $dimensions, pageCount: $pageCount, bundle: $bundle, sku: $sku, imageUrl: $imageUrl, price: $price)';
+      'ItemModel(bookType: $bookType, size: $size, dimensions: $dimensions, pageCount: $pageCount, bundle: $bundle, sku: $sku, imageUrl: $imageUrl, price: $price)';
 
   @override
   bool operator ==(covariant ItemModel other) {
     if (identical(this, other)) return true;
 
-    return other.subcategory == subcategory &&
+    return other.bookType == bookType &&
         other.size == size &&
         other.dimensions == dimensions &&
         other.pageCount == pageCount &&
@@ -96,7 +96,7 @@ class ItemModel {
 
   @override
   int get hashCode =>
-      subcategory.hashCode ^
+      bookType.hashCode ^
       size.hashCode ^
       dimensions.hashCode ^
       pageCount.hashCode ^

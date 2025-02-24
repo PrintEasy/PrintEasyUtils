@@ -8,7 +8,8 @@ class OrderModel {
     this.shipmentId,
     this.razorpay,
     this.shiprocket,
-    this.subcategory,
+    this.bookType,
+    this.subcategoryId = '',
     this.userId,
     this.user,
     this.totalAmount = 0,
@@ -27,7 +28,8 @@ class OrderModel {
       shipmentId: map['shipmentId'] as String?,
       razorpay: map['razorpay'] != null ? RazorpayPaymentModel.fromMap(map['razorpay']) : null,
       shiprocket: map['shiprocket'] != null ? ShiprocketModel.fromMap(map['shiprocket'] as Map<String, dynamic>) : null,
-      subcategory: map['subcategory'] != null ? BookType.fromName(map['subcategory'] as String) : null,
+      bookType: map['bookType'] != null ? BookType.fromName(map['bookType'] as String) : null,
+      subcategoryId: map['subcategoryId'] as String? ?? '',
       userId: map['userId'] as String?,
       user: map['user'] != null ? UserModel.fromMap(map['user'] as Map<String, dynamic>) : null,
       totalAmount: map['totalAmount'] as double,
@@ -45,7 +47,7 @@ class OrderModel {
     );
 
     model = model.copyWith(
-      subcategory: model.items.first.subcategory,
+      bookType: model.items.first.bookType,
     );
 
     return model;
@@ -55,7 +57,8 @@ class OrderModel {
 
   final String? orderId;
   final String? shipmentId;
-  final BookType? subcategory;
+  final BookType? bookType;
+  final String subcategoryId;
   final RazorpayPaymentModel? razorpay;
   final ShiprocketModel? shiprocket;
   final String? userId;
@@ -76,7 +79,8 @@ class OrderModel {
     String? shipmentId,
     RazorpayPaymentModel? razorpay,
     ShiprocketModel? shiprocket,
-    BookType? subcategory,
+    BookType? bookType,
+    String? subcategoryId,
     String? userId,
     UserModel? user,
     double? totalAmount,
@@ -93,7 +97,8 @@ class OrderModel {
         shipmentId: shipmentId ?? this.shipmentId,
         razorpay: razorpay ?? this.razorpay,
         shiprocket: shiprocket ?? this.shiprocket,
-        subcategory: subcategory ?? this.subcategory,
+        bookType: bookType ?? this.bookType,
+        subcategoryId: subcategoryId ?? this.subcategoryId,
         userId: userId ?? this.userId,
         user: user ?? this.user,
         totalAmount: totalAmount ?? this.totalAmount,
@@ -111,7 +116,8 @@ class OrderModel {
         'shipmentId': shipmentId,
         'razorpay': razorpay?.toMap(),
         'shiprocket': shiprocket?.toMap(),
-        'subcategory': subcategory?.name,
+        'bookType': bookType?.name,
+        'subcategoryId': subcategoryId,
         'userId': userId,
         'user': user?.toMap(),
         'totalAmount': totalAmount,
@@ -128,7 +134,7 @@ class OrderModel {
 
   @override
   String toString() =>
-      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, shiprocket: $shiprocket, userId: $userId, user: $user, subcategory: $subcategory, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shipmentAddressId: $shippingAddressId, billingAddressId: $billingAddressId, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
+      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, shiprocket: $shiprocket, userId: $userId, user: $user, bookType: $bookType, subcategoryId: $subcategoryId, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shipmentAddressId: $shippingAddressId, billingAddressId: $billingAddressId, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
 
   @override
   bool operator ==(covariant OrderModel other) {
