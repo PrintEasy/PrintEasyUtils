@@ -21,6 +21,8 @@ class OrderModel {
     this.billingAddressId,
     this.shippingAddress,
     this.billingAddress,
+    this.couponCode = '',
+    this.franchiseId = '',
   });
 
   factory OrderModel.fromMap(Map<String, dynamic> map) {
@@ -46,6 +48,8 @@ class OrderModel {
       billingAddressId: map['billingAddressId'] as String?,
       shippingAddress: map['shippingAddress'] != null ? AddressModel.fromMap(map['shippingAddress'] as Map<String, dynamic>) : null,
       billingAddress: map['billingAddress'] != null ? AddressModel.fromMap(map['shippingAddress'] as Map<String, dynamic>) : null,
+      couponCode: map['couponCode'] as String? ?? '',
+      franchiseId: map['franchiseId'] as String? ?? '',
     );
 
     model = model.copyWith(
@@ -74,6 +78,8 @@ class OrderModel {
   final AddressModel? shippingAddress;
   final String? billingAddressId;
   final AddressModel? billingAddress;
+  final String couponCode;
+  final String franchiseId;
 
   String get mobile => user?.phone ?? '';
 
@@ -95,6 +101,8 @@ class OrderModel {
     String? billingAddressId,
     AddressModel? shippingAddress,
     AddressModel? billingAddress,
+    String? couponCode,
+    String? franchiseId,
   }) =>
       OrderModel(
         orderId: orderId ?? this.orderId,
@@ -114,6 +122,8 @@ class OrderModel {
         billingAddressId: billingAddressId ?? this.billingAddressId,
         shippingAddress: shippingAddress ?? this.shippingAddress,
         billingAddress: billingAddress ?? this.billingAddress,
+        couponCode: couponCode ?? this.couponCode,
+        franchiseId: franchiseId ?? this.franchiseId,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -134,13 +144,15 @@ class OrderModel {
         'billingAddressId': billingAddressId,
         'shippingAddress': shippingAddress?.toMap(),
         'billingAddress': billingAddress?.toMap(),
+        'couponCode': couponCode,
+        'franchiseId': franchiseId,
       };
 
   String toJson() => json.encode(toMap());
 
   @override
   String toString() =>
-      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, shiprocket: $shiprocket, userId: $userId, user: $user, bookType: $bookType, categoryId: $categoryId, subcategoryId: $subcategoryId, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shipmentAddressId: $shippingAddressId, billingAddressId: $billingAddressId, shippingAddress: $shippingAddress, billingAddress: $billingAddress)';
+      'OrderModel(orderId: $orderId, shipmentId: $shipmentId, razorpay: $razorpay, shiprocket: $shiprocket, userId: $userId, user: $user, bookType: $bookType, categoryId: $categoryId, subcategoryId: $subcategoryId, totalAmount: $totalAmount, orderDate: $orderDate, status: $status, items: $items, shipmentAddressId: $shippingAddressId, billingAddressId: $billingAddressId, shippingAddress: $shippingAddress, billingAddress: $billingAddress, couponCode: $couponCode, franchiseId: $franchiseId)';
 
   @override
   bool operator ==(covariant OrderModel other) {

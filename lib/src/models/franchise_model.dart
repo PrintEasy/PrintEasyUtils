@@ -76,7 +76,7 @@ class FranchiseModel {
         'unsettledAmount': unsettledAmount,
         'commission': commission,
         'discount': discount,
-        'createdAt': createdAt.millisecondsSinceEpoch,
+        'createdAt': createdAt.toIso8601String(),
       };
 
   String toJson() => json.encode(toMap());
