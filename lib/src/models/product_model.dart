@@ -29,6 +29,7 @@ class ProductModel {
     this.illustrationSize = IllustrationSize.large,
     this.fontFamily = PrintEasyFonts.beachBikini,
     this.fontColor = PrintEasyColors.white,
+    this.isActive = true,
   });
 
   factory ProductModel.fromMap(Map<String, dynamic> map) => ProductModel(
@@ -64,6 +65,7 @@ class ProductModel {
         ),
         fontFamily: PrintEasyFonts.fromName(map['fontFamily'] as String? ?? ''),
         fontColor: PrintEasyColors.fromName(map['fontColor'] as String? ?? ''),
+        isActive: map['isActive'] as bool? ?? true,
       );
 
   factory ProductModel.fromJson(String source) => ProductModel.fromMap(
@@ -94,6 +96,7 @@ class ProductModel {
   final IllustrationSize illustrationSize;
   final PrintEasyFonts fontFamily;
   final PrintEasyColors fontColor;
+  final bool isActive;
 
   double get totalPrice => discountedPrice > 0 ? discountedPrice : basePrice;
 
@@ -123,6 +126,7 @@ class ProductModel {
     IllustrationSize? illustrationSize,
     PrintEasyFonts? fontFamily,
     PrintEasyColors? fontColor,
+    bool? isActive,
   }) =>
       ProductModel(
         id: id ?? this.id,
@@ -148,6 +152,7 @@ class ProductModel {
         illustrationSize: illustrationSize ?? this.illustrationSize,
         fontFamily: fontFamily ?? this.fontFamily,
         fontColor: fontColor ?? this.fontColor,
+        isActive: isActive ?? this.isActive,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -174,13 +179,14 @@ class ProductModel {
         'illustrationSize': illustrationSize.name,
         'fontFamily': fontFamily.name,
         'fontColor': fontColor.name,
+        'isActive': isActive,
       };
 
   String toJson() => json.encode(toMap());
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, isActive: $isActive)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -208,7 +214,8 @@ class ProductModel {
         other.sizeChart == sizeChart &&
         other.illustrationSize == illustrationSize &&
         other.fontFamily == fontFamily &&
-        other.fontColor == fontColor;
+        other.fontColor == fontColor &&
+        other.isActive == isActive;
   }
 
   @override
@@ -235,5 +242,6 @@ class ProductModel {
       sizeChart.hashCode ^
       illustrationSize.hashCode ^
       fontFamily.hashCode ^
-      fontColor.hashCode;
+      fontColor.hashCode ^
+      isActive.hashCode;
 }
