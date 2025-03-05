@@ -13,6 +13,7 @@ class ProductModel {
     required this.illustrationImage,
     required this.isCustomizable,
     required this.name,
+    required this.subtitle,
     required this.description,
     required this.care,
     required this.sku,
@@ -41,6 +42,7 @@ class ProductModel {
         illustrationImage: map['illustrationImage'] as String,
         isCustomizable: map['isCustomizable'] as bool,
         name: map['name'] as String,
+        subtitle: map['subtitle'] as String? ?? '',
         description: map['description'] as String,
         care: map['care'] as String,
         sku: map['sku'] as String,
@@ -80,6 +82,7 @@ class ProductModel {
   final String illustrationImage;
   final bool isCustomizable;
   final String name;
+  final String subtitle;
   final String description;
   final String care;
   final String sku;
@@ -111,6 +114,7 @@ class ProductModel {
     String? illustrationImage,
     bool? isCustomizable,
     String? name,
+    String? subtitle,
     String? description,
     String? care,
     String? sku,
@@ -137,6 +141,7 @@ class ProductModel {
         illustrationImage: illustrationImage ?? this.illustrationImage,
         isCustomizable: isCustomizable ?? this.isCustomizable,
         name: name ?? this.name,
+        subtitle: subtitle ?? this.subtitle,
         description: description ?? this.description,
         care: care ?? this.care,
         sku: sku ?? this.sku,
@@ -164,6 +169,7 @@ class ProductModel {
         'illustrationImage': illustrationImage,
         'isCustomizable': isCustomizable,
         'name': name,
+        'subtitle': subtitle,
         'description': description,
         'care': care,
         'sku': sku,
@@ -186,7 +192,7 @@ class ProductModel {
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, isActive: $isActive)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, subtitle: $subtitle, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, isActive: $isActive)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -200,6 +206,7 @@ class ProductModel {
         other.illustrationImage == illustrationImage &&
         other.isCustomizable == isCustomizable &&
         other.name == name &&
+        other.subtitle == subtitle &&
         other.description == description &&
         other.care == care &&
         other.sku == sku &&
@@ -228,6 +235,7 @@ class ProductModel {
       illustrationImage.hashCode ^
       isCustomizable.hashCode ^
       name.hashCode ^
+      subtitle.hashCode ^
       description.hashCode ^
       care.hashCode ^
       sku.hashCode ^
