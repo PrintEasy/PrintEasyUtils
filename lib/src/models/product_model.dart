@@ -31,6 +31,9 @@ class ProductModel {
     this.fontFamily = PrintEasyFonts.beachBikini,
     this.fontColor = PrintEasyColors.white,
     this.isActive = true,
+    this.isNewArrival = false,
+    this.isBestSeller = false,
+    this.isTopChoice = false,
   });
 
   factory ProductModel.fromMap(Map<String, dynamic> map) => ProductModel(
@@ -68,6 +71,9 @@ class ProductModel {
         fontFamily: PrintEasyFonts.fromName(map['fontFamily'] as String? ?? ''),
         fontColor: PrintEasyColors.fromName(map['fontColor'] as String? ?? ''),
         isActive: map['isActive'] as bool? ?? true,
+        isNewArrival: map['isNewArrival'] as bool? ?? false,
+        isBestSeller: map['isBestSeller'] as bool? ?? false,
+        isTopChoice: map['isTopChoice'] as bool? ?? false,
       );
 
   factory ProductModel.fromJson(String source) => ProductModel.fromMap(
@@ -100,6 +106,9 @@ class ProductModel {
   final PrintEasyFonts fontFamily;
   final PrintEasyColors fontColor;
   final bool isActive;
+  final bool isNewArrival;
+  final bool isBestSeller;
+  final bool isTopChoice;
 
   double get totalPrice => discountedPrice > 0 ? discountedPrice : basePrice;
 
@@ -131,6 +140,9 @@ class ProductModel {
     PrintEasyFonts? fontFamily,
     PrintEasyColors? fontColor,
     bool? isActive,
+    bool? isNewArrival,
+    bool? isBestSeller,
+    bool? isTopChoice,
   }) =>
       ProductModel(
         id: id ?? this.id,
@@ -158,6 +170,9 @@ class ProductModel {
         fontFamily: fontFamily ?? this.fontFamily,
         fontColor: fontColor ?? this.fontColor,
         isActive: isActive ?? this.isActive,
+        isNewArrival: isNewArrival ?? this.isNewArrival,
+        isBestSeller: isBestSeller ?? this.isBestSeller,
+        isTopChoice: isTopChoice ?? this.isTopChoice,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -186,13 +201,16 @@ class ProductModel {
         'fontFamily': fontFamily.name,
         'fontColor': fontColor.name,
         'isActive': isActive,
+        'isNewArrival': isNewArrival,
+        'isBestSeller': isBestSeller,
+        'isTopChoice': isTopChoice,
       };
 
   String toJson() => json.encode(toMap());
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, subtitle: $subtitle, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, isActive: $isActive)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, subtitle: $subtitle, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, isActive: $isActive, isNewArrival: $isNewArrival, isBestSeller: $isBestSeller, isTopChoice: $isTopChoice)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -222,7 +240,10 @@ class ProductModel {
         other.illustrationSize == illustrationSize &&
         other.fontFamily == fontFamily &&
         other.fontColor == fontColor &&
-        other.isActive == isActive;
+        other.isActive == isActive &&
+        other.isNewArrival == isNewArrival &&
+        other.isBestSeller == isBestSeller &&
+        other.isTopChoice == isTopChoice;
   }
 
   @override
@@ -251,5 +272,8 @@ class ProductModel {
       illustrationSize.hashCode ^
       fontFamily.hashCode ^
       fontColor.hashCode ^
-      isActive.hashCode;
+      isActive.hashCode ^
+      isNewArrival.hashCode ^
+      isBestSeller.hashCode ^
+      isTopChoice.hashCode;
 }
