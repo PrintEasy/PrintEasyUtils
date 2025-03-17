@@ -30,6 +30,7 @@ class ProductModel {
     this.illustrationSize = IllustrationSize.large,
     this.fontFamily = PrintEasyFonts.beachBikini,
     this.fontColor = PrintEasyColors.white,
+    this.fontSize = 30,
     this.isActive = true,
     this.isNewArrival = false,
     this.isBestSeller = false,
@@ -70,6 +71,7 @@ class ProductModel {
         ),
         fontFamily: PrintEasyFonts.fromName(map['fontFamily'] as String? ?? ''),
         fontColor: PrintEasyColors.fromName(map['fontColor'] as String? ?? ''),
+        fontSize: map['fontSize'] as double? ?? 30,
         isActive: map['isActive'] as bool? ?? true,
         isNewArrival: map['isNewArrival'] as bool? ?? false,
         isBestSeller: map['isBestSeller'] as bool? ?? false,
@@ -105,6 +107,7 @@ class ProductModel {
   final IllustrationSize illustrationSize;
   final PrintEasyFonts fontFamily;
   final PrintEasyColors fontColor;
+  final double fontSize;
   final bool isActive;
   final bool isNewArrival;
   final bool isBestSeller;
@@ -139,6 +142,7 @@ class ProductModel {
     IllustrationSize? illustrationSize,
     PrintEasyFonts? fontFamily,
     PrintEasyColors? fontColor,
+    double? fontSize,
     bool? isActive,
     bool? isNewArrival,
     bool? isBestSeller,
@@ -169,6 +173,7 @@ class ProductModel {
         illustrationSize: illustrationSize ?? this.illustrationSize,
         fontFamily: fontFamily ?? this.fontFamily,
         fontColor: fontColor ?? this.fontColor,
+        fontSize: fontSize ?? this.fontSize,
         isActive: isActive ?? this.isActive,
         isNewArrival: isNewArrival ?? this.isNewArrival,
         isBestSeller: isBestSeller ?? this.isBestSeller,
@@ -200,6 +205,7 @@ class ProductModel {
         'illustrationSize': illustrationSize.name,
         'fontFamily': fontFamily.name,
         'fontColor': fontColor.name,
+        'fontSize': fontSize,
         'isActive': isActive,
         'isNewArrival': isNewArrival,
         'isBestSeller': isBestSeller,
@@ -210,7 +216,7 @@ class ProductModel {
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, subtitle: $subtitle, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, isActive: $isActive, isNewArrival: $isNewArrival, isBestSeller: $isBestSeller, isTopChoice: $isTopChoice)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, subtitle: $subtitle, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, fontSize: $fontSize, isActive: $isActive, isNewArrival: $isNewArrival, isBestSeller: $isBestSeller, isTopChoice: $isTopChoice)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -240,6 +246,7 @@ class ProductModel {
         other.illustrationSize == illustrationSize &&
         other.fontFamily == fontFamily &&
         other.fontColor == fontColor &&
+        other.fontSize == fontSize &&
         other.isActive == isActive &&
         other.isNewArrival == isNewArrival &&
         other.isBestSeller == isBestSeller &&
@@ -272,6 +279,7 @@ class ProductModel {
       illustrationSize.hashCode ^
       fontFamily.hashCode ^
       fontColor.hashCode ^
+      fontSize.hashCode ^
       isActive.hashCode ^
       isNewArrival.hashCode ^
       isBestSeller.hashCode ^
