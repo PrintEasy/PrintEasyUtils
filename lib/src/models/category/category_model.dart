@@ -13,6 +13,7 @@ class CategoryModel {
     this.configurations = const [],
     this.illustrations = const [],
     this.banners = const [],
+    this.collections = const [],
   });
 
   factory CategoryModel.fromMap(Map<String, dynamic> map) => CategoryModel(
@@ -40,6 +41,11 @@ class CategoryModel {
             (x) => BannerModel.fromMap(x as Map<String, dynamic>),
           ),
         ),
+        collections: List<CollectionModel>.from(
+          (map['collections'] as List? ?? []).map<CollectionModel>(
+            (x) => CollectionModel.fromMap(x as Map<String, dynamic>),
+          ),
+        ),
       );
 
   factory CategoryModel.fromJson(
@@ -55,6 +61,7 @@ class CategoryModel {
   final List<OptionsModel> configurations;
   final List<IllustrationModel> illustrations;
   final List<BannerModel> banners;
+  final List<CollectionModel> collections;
 
   CategoryModel copyWith({
     String? id,
@@ -65,6 +72,7 @@ class CategoryModel {
     List<OptionsModel>? configurations,
     List<IllustrationModel>? illustrations,
     List<BannerModel>? banners,
+    List<CollectionModel>? collections,
   }) =>
       CategoryModel(
         id: id ?? this.id,
@@ -75,6 +83,7 @@ class CategoryModel {
         configurations: configurations ?? this.configurations,
         illustrations: illustrations ?? this.illustrations,
         banners: banners ?? this.banners,
+        collections: collections ?? this.collections,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -86,13 +95,14 @@ class CategoryModel {
         'configurations': configurations.map((x) => x.toMap()).toList(),
         'illustrations': illustrations.map((x) => x.toMap()).toList(),
         'banners': banners.map((x) => x.toMap()).toList(),
+        'collections': collections.map((x) => x.toMap()).toList(),
       };
 
   String toJson() => json.encode(toMap());
 
   @override
   String toString() =>
-      'CategoryModel(id: $id, name: $name, value: $value, showBooks: $showBooks, subCategories: $subCategories, configurations: $configurations, illustrations: $illustrations)';
+      'CategoryModel(id: $id, name: $name, value: $value, showBooks: $showBooks, subCategories: $subCategories, configurations: $configurations, illustrations: $illustrations, collections: $collections)';
 
   @override
   bool operator ==(covariant CategoryModel other) {
@@ -105,7 +115,8 @@ class CategoryModel {
         listEquals(other.subCategories, subCategories) &&
         listEquals(other.configurations, configurations) &&
         listEquals(other.illustrations, illustrations) &&
-        listEquals(other.banners, banners);
+        listEquals(other.banners, banners) &&
+        listEquals(other.collections, collections);
   }
 
   @override
@@ -117,5 +128,6 @@ class CategoryModel {
       subCategories.hashCode ^
       configurations.hashCode ^
       illustrations.hashCode ^
-      banners.hashCode;
+      banners.hashCode ^
+      collections.hashCode;
 }
