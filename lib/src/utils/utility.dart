@@ -178,6 +178,7 @@ class Utility {
       backgroundColor: backgroundColor,
       margin: const EdgeInsets.all(16.0),
       borderRadius: 16,
+      maxWidth: PrintEasyConstants.maxMobileWidth,
       snackStyle: SnackStyle.FLOATING,
       snackPosition: SnackPosition.BOTTOM,
     );
