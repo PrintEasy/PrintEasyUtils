@@ -180,7 +180,7 @@ class Utility {
       borderRadius: 16,
       maxWidth: PrintEasyConstants.maxMobileWidth,
       snackStyle: SnackStyle.FLOATING,
-      snackPosition: SnackPosition.BOTTOM,
+      snackPosition: SnackPosition.TOP,
     );
   }
 }
