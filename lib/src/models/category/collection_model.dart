@@ -10,6 +10,7 @@ class CollectionModel {
     this.description = '',
     this.image = '',
     this.slug = '',
+    this.section = 1,
     this.isActive = true,
     this.products = const [],
   });
@@ -21,6 +22,7 @@ class CollectionModel {
         description: map['description'] as String? ?? '',
         image: map['image'] as String? ?? '',
         slug: map['slug'] as String? ?? '',
+        section: map['section'] as int? ?? 1,
         isActive: map['isActive'] as bool? ?? true,
         products: (map['products'] as List? ?? []).cast<String>(),
       );
@@ -38,6 +40,7 @@ class CollectionModel {
   final String description;
   final String image;
   final String slug;
+  final int section;
   final bool isActive;
   final List<String> products;
 
@@ -48,6 +51,7 @@ class CollectionModel {
     String? description,
     String? image,
     String? slug,
+    int? section,
     bool? isActive,
     List<String>? products,
   }) =>
@@ -58,6 +62,7 @@ class CollectionModel {
         description: description ?? this.description,
         image: image ?? this.image,
         slug: slug ?? this.slug,
+        section: section ?? this.section,
         isActive: isActive ?? this.isActive,
         products: products ?? this.products,
       );
@@ -69,6 +74,7 @@ class CollectionModel {
         'description': description,
         'image': image,
         'slug': slug,
+        'section': section,
         'isActive': isActive,
         'products': products,
       };
@@ -77,7 +83,7 @@ class CollectionModel {
 
   @override
   String toString() =>
-      'CollectionModel(id: $id, categoryId: $categoryId, name: $name, description: $description, image: $image, slug: $slug, isActive: $isActive, products: $products)';
+      'CollectionModel(id: $id, categoryId: $categoryId, name: $name, description: $description, image: $image, slug: $slug, section: $section, isActive: $isActive, products: $products)';
 
   @override
   bool operator ==(covariant CollectionModel other) {
@@ -89,6 +95,7 @@ class CollectionModel {
         other.description == description &&
         other.image == image &&
         other.slug == slug &&
+        other.section == section &&
         other.isActive == isActive &&
         listEquals(other.products, products);
   }
@@ -101,6 +108,7 @@ class CollectionModel {
       description.hashCode ^
       image.hashCode ^
       slug.hashCode ^
+      section.hashCode ^
       isActive.hashCode ^
       products.hashCode;
 }
