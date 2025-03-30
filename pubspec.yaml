@@ -71,9 +71,21 @@ flutter:
       fonts:
         - asset: assets/fonts/Firefly.ttf
 
+    - family: Forever
+      fonts:
+        - asset: assets/fonts/Forever.ttf
+
     - family: FreshLemonade
       fonts:
         - asset: assets/fonts/FreshLemonade.ttf
+
+    - family: Frozen
+      fonts:
+        - asset: assets/fonts/Frozen.ttf
+
+    - family: Hathway
+      fonts:
+        - asset: assets/fonts/Hathway.ttf
 
     - family: HeySugar
       fonts:
@@ -103,6 +115,10 @@ flutter:
       fonts:
         - asset: assets/fonts/Joyful.ttf
 
+    - family: Love Hearts
+      fonts:
+        - asset: assets/fonts/Love Hearts.ttf
+
     - family: Love More
       fonts:
         - asset: assets/fonts/Love More.ttf
@@ -122,6 +138,14 @@ flutter:
     - family: Meanwhile
       fonts:
         - asset: assets/fonts/Meanwhile.ttf
+
+    - family: Monkey
+      fonts:
+        - asset: assets/fonts/Monkey.ttf
+
+    - family: MoreLove
+      fonts:
+        - asset: assets/fonts/MoreLove.ttf
 
     - family: Pink Rose
       fonts:
