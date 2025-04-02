@@ -47,6 +47,10 @@ flutter:
     - assets/svg/
 
   fonts:
+    - family: Asteroid
+      fonts:
+        - asset: assets/fonts/Asteroid.ttf
+
     - family: BeachBikini
       fonts:
         - asset: assets/fonts/BeachBikini.ttf
@@ -59,6 +63,10 @@ flutter:
       fonts:
         - asset: assets/fonts/BeachSunrise.ttf
 
+    - family: BlueberryMuffin
+      fonts:
+        - asset: assets/fonts/BlueberryMuffin.ttf
+
     - family: Cakepop
       fonts:
         - asset: assets/fonts/Cakepop.ttf
@@ -66,6 +74,10 @@ flutter:
     - family: California
       fonts:
         - asset: assets/fonts/California.ttf
+
+    - family: DearMay
+      fonts:
+        - asset: assets/fonts/DearMay.ttf
 
     - family: Firefly
       fonts:
@@ -167,9 +179,21 @@ flutter:
       fonts:
         - asset: assets/fonts/Somekind.ttf
 
+    - family: SourSlushy
+      fonts:
+        - asset: assets/fonts/SourSlushy.ttf
+
+    - family: SummerSunshine
+      fonts:
+        - asset: assets/fonts/SummerSunshine.ttf
+
     - family: Sunlight
       fonts:
         - asset: assets/fonts/Sunlight.ttf
+
+    - family: SweetDreams
+      fonts:
+        - asset: assets/fonts/SweetDreams.ttf
 
     - family: TheWildOne
       fonts:
@@ -187,6 +211,14 @@ flutter:
       fonts:
         - asset: assets/fonts/Thinker.ttf
 
+    - family: Thoughtful
+      fonts:
+        - asset: assets/fonts/Thoughtful.ttf
+
     - family: TigerLand
       fonts:
         - asset: assets/fonts/TigerLand.ttf
+
+    - family: Tigerlily
+      fonts:
+        - asset: assets/fonts/Tigerlily.ttf

@@ -199,11 +199,14 @@ enum IllustrationSize {
 }
 
 enum PrintEasyFonts {
+  asteroid('Asteroid'),
   beachBikini('BeachBikini'),
   beachside('Beachside'),
   beachSunrise('BeachSunrise'),
+  blueberryMuffin('Blueberry Muffin'),
   cakepop('Cakepop'),
   california('California'),
+  dearMay('DearMay'),
   firefly('Firefly'),
   forever('Forever'),
   freshLemonade('FreshLemonade'),
@@ -229,12 +232,17 @@ enum PrintEasyFonts {
   reality('Reality'),
   scramble('Scramble'),
   somekind('Somekind'),
+  sourSlushy('SourSlushy'),
+  summerSunshine('SummerSunshine'),
   sunlight('Sunlight'),
+  sweetDreams('SweetDreams'),
   theWildOne('TheWildOne'),
   theWildOneFun('TheWildOneFun'),
   theWildOneSolid('TheWildOneSolid'),
   thinker('Thinker'),
+  thoughtful('Thoughtful'),
   tigerLand('TigerLand'),
+  tigerlily('Tigerlily'),
   ;
 
   factory PrintEasyFonts.fromName(
