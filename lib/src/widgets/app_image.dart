@@ -8,12 +8,14 @@ class AppImage extends StatelessWidget {
     this.height,
     this.width,
     this.fit,
+    this.scale = 1.0,
   });
 
   final String imageUrl;
   final double? height;
   final double? width;
   final BoxFit? fit;
+  final double scale;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class AppImage extends StatelessWidget {
       fit: fit ?? BoxFit.cover,
       height: height,
       width: width,
+      scale: scale,
     );
   }
 }

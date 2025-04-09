@@ -8,6 +8,7 @@ class CategoryModel {
     this.id = '',
     this.name = '',
     this.value = '',
+    this.isActive = true,
     this.showBooks = false,
     this.subCategories = const [],
     this.configurations = const [],
@@ -20,6 +21,7 @@ class CategoryModel {
         id: map['id'] as String? ?? '',
         name: map['name'] as String? ?? '',
         value: map['value'] as String? ?? '',
+        isActive: map['isActive'] as bool? ?? true,
         showBooks: map['showBooks'] as bool? ?? false,
         subCategories: List<SubcategoryModel>.from(
           (map['subCategories'] as List? ?? []).map<SubcategoryModel>(
@@ -56,6 +58,7 @@ class CategoryModel {
   final String id;
   final String name;
   final String value;
+  final bool isActive;
   final bool showBooks;
   final List<SubcategoryModel> subCategories;
   final List<OptionsModel> configurations;
@@ -67,6 +70,7 @@ class CategoryModel {
     String? id,
     String? name,
     String? value,
+    bool? isActive,
     bool? showBooks,
     List<SubcategoryModel>? subCategories,
     List<OptionsModel>? configurations,
@@ -78,6 +82,7 @@ class CategoryModel {
         id: id ?? this.id,
         name: name ?? this.name,
         value: value ?? this.value,
+        isActive: isActive ?? this.isActive,
         showBooks: showBooks ?? this.showBooks,
         subCategories: subCategories ?? this.subCategories,
         configurations: configurations ?? this.configurations,
@@ -90,6 +95,7 @@ class CategoryModel {
         'id': id,
         'name': name,
         'value': value,
+        'isActive': isActive,
         'showBooks': showBooks,
         'subCategories': subCategories.map((x) => x.toMap()).toList(),
         'configurations': configurations.map((x) => x.toMap()).toList(),
@@ -102,7 +108,7 @@ class CategoryModel {
 
   @override
   String toString() =>
-      'CategoryModel(id: $id, name: $name, value: $value, showBooks: $showBooks, subCategories: $subCategories, configurations: $configurations, illustrations: $illustrations, collections: $collections)';
+      'CategoryModel(id: $id, name: $name, value: $value, isActive: $isActive, showBooks: $showBooks, subCategories: $subCategories, configurations: $configurations, illustrations: $illustrations, collections: $collections)';
 
   @override
   bool operator ==(covariant CategoryModel other) {
@@ -111,6 +117,7 @@ class CategoryModel {
     return other.id == id &&
         other.name == name &&
         other.value == value &&
+        other.isActive == isActive &&
         other.showBooks == showBooks &&
         listEquals(other.subCategories, subCategories) &&
         listEquals(other.configurations, configurations) &&
@@ -124,6 +131,7 @@ class CategoryModel {
       id.hashCode ^
       name.hashCode ^
       value.hashCode ^
+      isActive.hashCode ^
       showBooks.hashCode ^
       subCategories.hashCode ^
       configurations.hashCode ^
