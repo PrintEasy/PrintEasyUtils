@@ -51,10 +51,14 @@ class Utility {
   static Future<Uint8List?> captureFromWidget(
     Widget child, {
     BuildContext? context,
+    double? pixelRatio,
+    Size? targetSize,
   }) =>
       ScreenshotController().captureFromWidget(
         child,
         context: context,
+        pixelRatio: pixelRatio,
+        targetSize: targetSize,
       );
 
   /// Show loader
