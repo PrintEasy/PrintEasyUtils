@@ -25,12 +25,27 @@ class CodeManager {
     Color backgroundColor = Colors.white,
     TextStyle? style,
     Symbology? symbology,
+    bool useDefaultSymbology = true,
   }) =>
       SfBarcodeGenerator(
         value: data,
-        symbology: symbology ?? EAN13(),
+        symbology: symbology ?? _barcodeSymbology(data, useDefaultSymbology),
         showValue: showValue,
         backgroundColor: backgroundColor,
         textStyle: style,
       );
+
+  static Symbology _barcodeSymbology(
+    String data,
+    bool useDefaultSymbology,
+  ) =>
+      useDefaultSymbology
+          ? Code128()
+          : switch (data.length) {
+              13 || 12 => EAN13(),
+              11 => UPCA(),
+              8 || 7 => EAN8(),
+              6 => UPCE(),
+              _ => Code128(),
+            };
 }
