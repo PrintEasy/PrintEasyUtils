@@ -28,7 +28,7 @@ class CodeManager {
   }) =>
       SfBarcodeGenerator(
         value: data,
-        symbology: symbology ?? Code128(),
+        symbology: symbology ?? EAN13(),
         showValue: showValue,
         backgroundColor: backgroundColor,
         textStyle: style,
