@@ -9,10 +9,11 @@ class CodeManager {
     bool showValue = true,
     Color backgroundColor = Colors.white,
     TextStyle? style,
+    Symbology? symbology,
   }) =>
       SfBarcodeGenerator(
         value: data,
-        symbology: QRCode(),
+        symbology: symbology ?? QRCode(),
         showValue: showValue,
         backgroundColor: backgroundColor,
         textStyle: style,
@@ -23,10 +24,11 @@ class CodeManager {
     bool showValue = true,
     Color backgroundColor = Colors.white,
     TextStyle? style,
+    Symbology? symbology,
   }) =>
       SfBarcodeGenerator(
         value: data,
-        symbology: Code128(),
+        symbology: symbology ?? Code128(),
         showValue: showValue,
         backgroundColor: backgroundColor,
         textStyle: style,
