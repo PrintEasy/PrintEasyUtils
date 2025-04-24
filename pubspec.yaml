@@ -9,21 +9,19 @@ environment:
 
 dependencies:
   cached_network_image: ^3.4.1
-  cloud_firestore: ^5.6.0
+  cloud_firestore: ^5.6.6
   flutter:
     sdk: flutter
-  flutter_svg: ^2.0.17
+  flutter_svg: ^2.1.0
   flutter_web_plugins:
     sdk: flutter
-  get: ^4.6.6
+  get: ^4.7.2
   google_fonts: ^6.2.1
   image_picker: ^1.1.2
-  intl: ^0.20.1
-  plugin_platform_interface: ^2.0.2
+  intl: ^0.20.2
   screenshot: ^3.0.0
   shimmer: ^3.0.0
-  syncfusion_flutter_barcodes: ^28.1.36
-  web: ^1.1.0
+  syncfusion_flutter_barcodes: ^29.1.39
 
 dev_dependencies:
   flutter_lints: ^5.0.0
@@ -38,9 +36,6 @@ flutter:
         pluginClass: PrinteasyUtilsPlugin
       ios:
         pluginClass: PrinteasyUtilsPlugin
-      web:
-        pluginClass: PrinteasyUtilsWeb
-        fileName: printeasy_utils_web.dart
 
   assets:
     - assets/images/
