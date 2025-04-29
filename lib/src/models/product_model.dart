@@ -32,6 +32,7 @@ class ProductModel {
     this.fontColor = PrintEasyColors.white,
     this.fontSize = 30,
     this.isActive = true,
+    this.isFeatured = false,
     this.isNewArrival = false,
     this.isBestSeller = false,
     this.isTopChoice = false,
@@ -73,6 +74,7 @@ class ProductModel {
         fontColor: PrintEasyColors.fromName(map['fontColor'] as String? ?? ''),
         fontSize: map['fontSize'] as double? ?? 30,
         isActive: map['isActive'] as bool? ?? true,
+        isFeatured: map['isFeatured'] as bool? ?? false,
         isNewArrival: map['isNewArrival'] as bool? ?? false,
         isBestSeller: map['isBestSeller'] as bool? ?? false,
         isTopChoice: map['isTopChoice'] as bool? ?? false,
@@ -109,6 +111,7 @@ class ProductModel {
   final PrintEasyColors fontColor;
   final double fontSize;
   final bool isActive;
+  final bool isFeatured;
   final bool isNewArrival;
   final bool isBestSeller;
   final bool isTopChoice;
@@ -144,6 +147,7 @@ class ProductModel {
     PrintEasyColors? fontColor,
     double? fontSize,
     bool? isActive,
+    bool? isFeatured,
     bool? isNewArrival,
     bool? isBestSeller,
     bool? isTopChoice,
@@ -175,6 +179,7 @@ class ProductModel {
         fontColor: fontColor ?? this.fontColor,
         fontSize: fontSize ?? this.fontSize,
         isActive: isActive ?? this.isActive,
+        isFeatured: isFeatured ?? this.isFeatured,
         isNewArrival: isNewArrival ?? this.isNewArrival,
         isBestSeller: isBestSeller ?? this.isBestSeller,
         isTopChoice: isTopChoice ?? this.isTopChoice,
@@ -207,6 +212,7 @@ class ProductModel {
         'fontColor': fontColor.name,
         'fontSize': fontSize,
         'isActive': isActive,
+        'isFeatured': isFeatured,
         'isNewArrival': isNewArrival,
         'isBestSeller': isBestSeller,
         'isTopChoice': isTopChoice,
@@ -216,7 +222,7 @@ class ProductModel {
 
   @override
   String toString() =>
-      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, subtitle: $subtitle, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, fontSize: $fontSize, isActive: $isActive, isNewArrival: $isNewArrival, isBestSeller: $isBestSeller, isTopChoice: $isTopChoice)';
+      'ProductModel(id: $id, categoryId: $categoryId, subcategoryId: $subcategoryId, productImages: $productImages, canvasImage: $canvasImage, illustrationImage: $illustrationImage, isCustomizable: $isCustomizable, name: $name, subtitle: $subtitle, description: $description, care: $care, sku: $sku, slug: $slug, tags: $tags, dimension: $dimension, configuration: $configuration, illustrationOption: $illustrationOption, presetText: $presetText, basePrice: $basePrice, discountedPrice: $discountedPrice, isInWishlist: $isInWishlist, sizeChart: $sizeChart, illustrationSize: $illustrationSize, fontFamily: $fontFamily, fontColor: $fontColor, fontSize: $fontSize, isActive: $isActive, isFeatured: $isFeatured, isNewArrival: $isNewArrival, isBestSeller: $isBestSeller, isTopChoice: $isTopChoice)';
 
   @override
   bool operator ==(covariant ProductModel other) {
@@ -248,6 +254,7 @@ class ProductModel {
         other.fontColor == fontColor &&
         other.fontSize == fontSize &&
         other.isActive == isActive &&
+        other.isFeatured == isFeatured &&
         other.isNewArrival == isNewArrival &&
         other.isBestSeller == isBestSeller &&
         other.isTopChoice == isTopChoice;
@@ -281,6 +288,7 @@ class ProductModel {
       fontColor.hashCode ^
       fontSize.hashCode ^
       isActive.hashCode ^
+      isFeatured.hashCode ^
       isNewArrival.hashCode ^
       isBestSeller.hashCode ^
       isTopChoice.hashCode;
