@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
+import 'package:printeasy_utils/src/models/gift_reward_model.dart';
 import 'package:shimmer/shimmer.dart';
 
 extension BuildContextExtension on BuildContext {
@@ -229,4 +230,123 @@ extension WidgetExtension on Widget {
         highlightColor: AppColors.imageBackground,
         child: this,
       );
+}
+
+/// ─────────────────────────────────────────────────────────────
+/// 🎁 Extension on GiftType (Icon, Color, Emoji, JSON, etc.)
+/// ─────────────────────────────────────────────────────────────
+extension GiftTypeExtension on GiftType {
+  /// Icon representing each GiftType
+  IconData get icon {
+    switch (this) {
+      case GiftType.discount:
+        return Icons.percent;
+      case GiftType.product:
+        return Icons.shopping_bag;
+      case GiftType.freeDelivery:
+        return Icons.local_shipping;
+      case GiftType.other:
+        return Icons.card_giftcard;
+    }
+  }
+
+  /// Label for UI display
+  String get label {
+    switch (this) {
+      case GiftType.discount:
+        return 'Discount';
+      case GiftType.product:
+        return 'Free Product';
+      case GiftType.freeDelivery:
+        return 'Free Delivery';
+      case GiftType.other:
+        return 'Special Reward';
+    }
+  }
+
+  /// Emoji representation (for fun or quick visual cues)
+  String get emoji {
+    switch (this) {
+      case GiftType.discount:
+        return '💸';
+      case GiftType.product:
+        return '🎁';
+      case GiftType.freeDelivery:
+        return '🚚';
+      case GiftType.other:
+        return '✨';
+    }
+  }
+
+  /// Primary color for chip/icon/text
+  Color get color {
+    switch (this) {
+      case GiftType.discount:
+        return Colors.orange;
+      case GiftType.product:
+        return Colors.purple;
+      case GiftType.freeDelivery:
+        return Colors.blue;
+      case GiftType.other:
+        return Colors.teal;
+    }
+  }
+
+  /// Background color for tags/badges (10% opacity)
+  Color get backgroundColor => color.withValues(alpha: .1);
+
+  /// To JSON-safe string
+  String get value => name;
+
+  /// Capitalized version of the label
+  String get capitalized => label;
+
+  /// Safely convert string to enum
+  static GiftType fromName(String? name) {
+    if (name == null) return GiftType.other;
+    return GiftType.values.firstWhere(
+      (e) => e.name == name,
+      orElse: () => GiftType.other,
+    );
+  }
+}
+
+
+extension GiftRewardListExtension on List<GiftRewardModel> {
+  /// Returns all active and eligible rewards for the given [cartTotal].
+  List<GiftRewardModel> availableRewards(double cartTotal) => where((r) => r.isActive && r.minOrderAmount <= cartTotal)
+        .toList()
+      ..sort((a, b) => a.minOrderAmount.compareTo(b.minOrderAmount));
+
+  /// Returns the highest-value reward currently unlocked.
+  GiftRewardModel? currentUnlockedReward(double cartTotal) {
+    final unlocked = availableRewards(cartTotal);
+    return unlocked.isNotEmpty ? unlocked.last : null;
+  }
+
+  /// Returns the next reward to be unlocked above current [cartTotal].
+  GiftRewardModel? nextUnlockableReward(double cartTotal) {
+    final future = where((r) => r.isActive && r.minOrderAmount > cartTotal)
+        .toList();
+    if (future.isEmpty) return null;
+    return future.reduce((a, b) =>
+        a.minOrderAmount < b.minOrderAmount ? a : b);
+  }
+
+  /// Returns `true` if a reward with [id] is unlocked for [cartTotal].
+  bool isRewardUnlocked(String id, double cartTotal) {
+    final match = where((r) => r.id == id);
+    if (match.isEmpty) return false;
+    final reward = match.first;
+    return reward.isActive && cartTotal >= reward.minOrderAmount;
+  }
+
+  /// Returns only the rewards of a specific [GiftType].
+  List<GiftRewardModel> ofType(GiftType type, {bool onlyActive = true}) => where((r) =>
+        r.giftType == type && (onlyActive ? r.isActive : true)).toList();
+
+  /// Returns the total discount amount from all applicable unlocked rewards.
+  double totalDiscountAmount(double cartTotal) => availableRewards(cartTotal)
+        .map((r) => r.discountAmount ?? 0)
+        .fold(0.0, (a, b) => a + b);
 }

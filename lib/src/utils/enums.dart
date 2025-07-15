@@ -301,3 +301,11 @@ enum PrintEasyColors {
   const PrintEasyColors(this.color);
   final Color color;
 }
+
+
+enum GiftType {
+  discount, // e.g. 10% OFF
+  product, // e.g. Free tote bag
+  freeDelivery, // e.g. Free shipping
+  other // Fallback/default type
+}
