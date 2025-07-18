@@ -2,36 +2,36 @@ import 'dart:convert';
 
 class PromoHeadlineModel {
 
+  /// Factory: From Map (API)
+  factory PromoHeadlineModel.fromMap(Map<String, dynamic> map) => PromoHeadlineModel(
+        id: map['id'], // no fallback needed, it's nullable
+        headline: map['headline'] ?? '',
+        createdAt: DateTime.tryParse(map['createdAt'] ?? '') ?? DateTime.now(),
+        isActive: map['isActive'] ?? true,
+      );
+
+  /// Factory: From JSON string
+  factory PromoHeadlineModel.fromJson(String source) =>
+      PromoHeadlineModel.fromMap(json.decode(source));
   PromoHeadlineModel({
-    required this.id,
+    this.id, // nullable now
     required this.headline,
     required this.createdAt,
     required this.isActive,
   });
 
-  /// Factory: From Map (API)
-  factory PromoHeadlineModel.fromMap(Map<String, dynamic> map) => PromoHeadlineModel(
-      id: map['id'] ?? '',
-      headline: map['headline'] ?? '',
-      createdAt: DateTime.tryParse(map['createdAt'] ?? '') ?? DateTime.now(),
-      isActive: map['isActive'] ?? true,
-    );
-
-  /// Factory: From JSON string
-  factory PromoHeadlineModel.fromJson(String source) =>
-      PromoHeadlineModel.fromMap(json.decode(source));
-  final String id;
+  final String? id; // Made nullable
   final String headline;
   final DateTime createdAt;
   final bool isActive;
 
   /// Convert model to Map
   Map<String, dynamic> toMap() => {
-      'id': id,
-      'headline': headline,
-      'createdAt': createdAt.toIso8601String(),
-      'isActive': isActive,
-    };
+        if (id != null) 'id': id, // optional field
+        'headline': headline,
+        'createdAt': createdAt.toIso8601String(),
+        'isActive': isActive,
+      };
 
   /// Convert model to JSON string
   String toJson() => json.encode(toMap());
@@ -42,12 +42,13 @@ class PromoHeadlineModel {
     String? headline,
     DateTime? createdAt,
     bool? isActive,
-  }) => PromoHeadlineModel(
-      id: id ?? this.id,
-      headline: headline ?? this.headline,
-      createdAt: createdAt ?? this.createdAt,
-      isActive: isActive ?? this.isActive,
-    );
+  }) =>
+      PromoHeadlineModel(
+        id: id ?? this.id,
+        headline: headline ?? this.headline,
+        createdAt: createdAt ?? this.createdAt,
+        isActive: isActive ?? this.isActive,
+      );
 
   /// Override ==
   @override
@@ -70,7 +71,8 @@ class PromoHeadlineModel {
 
   /// toString override for debugging
   @override
-  String toString() => 'PromoHeadlineModel(id: $id, headline: $headline, createdAt: $createdAt, isActive: $isActive)';
+  String toString() =>
+      'PromoHeadlineModel(id: $id, headline: $headline, createdAt: $createdAt, isActive: $isActive)';
 
   /// Utilities for list conversion
   static List<PromoHeadlineModel> listFromJson(String jsonStr) {
@@ -78,5 +80,6 @@ class PromoHeadlineModel {
     return decoded.map((e) => PromoHeadlineModel.fromMap(e)).toList();
   }
 
-  static String listToJson(List<PromoHeadlineModel> list) => json.encode(list.map((e) => e.toMap()).toList());
+  static String listToJson(List<PromoHeadlineModel> list) =>
+      json.encode(list.map((e) => e.toMap()).toList());
 }

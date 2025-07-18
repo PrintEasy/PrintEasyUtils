@@ -3,22 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:printeasy_utils/printeasy_utils.dart';
 
 class GiftRewardModel {
-
   /// JSON to Model
   factory GiftRewardModel.fromMap(Map<String, dynamic> json) => GiftRewardModel(
-      id: json['id'] ?? '',
-      title: json['title'] ?? '',
-      minOrderAmount: (json['minOrderAmount'] ?? 0).toDouble(),
-      giftType: GiftType.values.byName(json['giftType'] ?? 'other'),
-      discountPercentage: (json['discountPercentage'] as num?)?.toDouble(),
-      discountAmount: (json['discountAmount'] as num?)?.toDouble(),
-      productId: json['productId'],
-      createdAt: DateTime.tryParse(json['createdAt'] ?? '') ?? DateTime.now(),
-      isActive: json['isActive'] ?? true,
-    );
+        id: json['id'], // Nullable
+        title: json['title'] ?? '',
+        minOrderAmount: (json['minOrderAmount'] ?? 0).toDouble(),
+        giftType: GiftType.values.byName(json['giftType'] ?? 'other'),
+        discountPercentage: (json['discountPercentage'] as num?)?.toDouble(),
+        discountAmount: (json['discountAmount'] as num?)?.toDouble(),
+        productId: json['productId'],
+        createdAt: DateTime.tryParse(json['createdAt'] ?? '') ?? DateTime.now(),
+        isActive: json['isActive'] ?? true,
+      );
 
   GiftRewardModel({
-    required this.id,
+    this.id,
     required this.title,
     required this.minOrderAmount,
     required this.giftType,
@@ -31,7 +30,8 @@ class GiftRewardModel {
 
   factory GiftRewardModel.fromJson(String source) =>
       GiftRewardModel.fromMap(json.decode(source));
-  final String id;
+
+  final String? id; // ✅ Made nullable
   final String title;
   final double minOrderAmount;
   final GiftType giftType;
@@ -43,16 +43,16 @@ class GiftRewardModel {
 
   /// Model to JSON
   Map<String, dynamic> toMap() => {
-      'id': id,
-      'title': title,
-      'minOrderAmount': minOrderAmount,
-      'giftType': giftType.name,
-      'discountPercentage': discountPercentage,
-      'discountAmount': discountAmount,
-      'productId': productId,
-      'createdAt': createdAt.toIso8601String(),
-      'isActive': isActive,
-    };
+        if (id != null) 'id': id, // ✅ Include only if non-null
+        'title': title,
+        'minOrderAmount': minOrderAmount,
+        'giftType': giftType.name,
+        'discountPercentage': discountPercentage,
+        'discountAmount': discountAmount,
+        'productId': productId,
+        'createdAt': createdAt.toIso8601String(),
+        'isActive': isActive,
+      };
 
   String toJson() => json.encode(toMap());
 
@@ -67,17 +67,18 @@ class GiftRewardModel {
     String? productId,
     DateTime? createdAt,
     bool? isActive,
-  }) => GiftRewardModel(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      minOrderAmount: minOrderAmount ?? this.minOrderAmount,
-      giftType: giftType ?? this.giftType,
-      discountPercentage: discountPercentage ?? this.discountPercentage,
-      discountAmount: discountAmount ?? this.discountAmount,
-      productId: productId ?? this.productId,
-      createdAt: createdAt ?? this.createdAt,
-      isActive: isActive ?? this.isActive,
-    );
+  }) =>
+      GiftRewardModel(
+        id: id ?? this.id,
+        title: title ?? this.title,
+        minOrderAmount: minOrderAmount ?? this.minOrderAmount,
+        giftType: giftType ?? this.giftType,
+        discountPercentage: discountPercentage ?? this.discountPercentage,
+        discountAmount: discountAmount ?? this.discountAmount,
+        productId: productId ?? this.productId,
+        createdAt: createdAt ?? this.createdAt,
+        isActive: isActive ?? this.isActive,
+      );
 
   // 🧠 Computed Getters
   bool get isDiscount => giftType == GiftType.discount;
@@ -103,8 +104,8 @@ class GiftRewardModel {
     return decoded.map((e) => GiftRewardModel.fromMap(e)).toList();
   }
 
-  static String listToJson(List<GiftRewardModel> list) => json.encode(list.map((e) => e.toMap()).toList());
-
+  static String listToJson(List<GiftRewardModel> list) =>
+      json.encode(list.map((e) => e.toMap()).toList());
 
   // 🧩 Equality
   @override
@@ -124,16 +125,18 @@ class GiftRewardModel {
   }
 
   @override
-  int get hashCode => id.hashCode ^
-        title.hashCode ^
-        minOrderAmount.hashCode ^
-        giftType.hashCode ^
-        discountPercentage.hashCode ^
-        discountAmount.hashCode ^
-        productId.hashCode ^
-        createdAt.hashCode ^
-        isActive.hashCode;
+  int get hashCode =>
+      id.hashCode ^
+      title.hashCode ^
+      minOrderAmount.hashCode ^
+      giftType.hashCode ^
+      discountPercentage.hashCode ^
+      discountAmount.hashCode ^
+      productId.hashCode ^
+      createdAt.hashCode ^
+      isActive.hashCode;
 
   @override
-  String toString() => 'GiftRewardModel(id: $id, title: $title, minOrderAmount: $minOrderAmount, giftType: $giftType, discountPercentage: $discountPercentage, discountAmount: $discountAmount, productId: $productId, createdAt: $createdAt, isActive: $isActive)';
+  String toString() =>
+      'GiftRewardModel(id: $id, title: $title, minOrderAmount: $minOrderAmount, giftType: $giftType, discountPercentage: $discountPercentage, discountAmount: $discountAmount, productId: $productId, createdAt: $createdAt, isActive: $isActive)';
 }
